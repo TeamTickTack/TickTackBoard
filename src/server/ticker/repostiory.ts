@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common';
 import { Player } from './model/player';
 import { Match } from './model/match';
 import { Ranking } from './model/ranking';
+import { Arena } from './model/arena';
 @Injectable()
 export class Repository {
     constructor(private readonly db: DbService) { }
@@ -29,6 +30,17 @@ export class Repository {
 
     public async getRankings(): Promise<Ranking[]>  {
         return await this.db.k('ranking');
+    }
+
+    public async getArenas(): Promise<Arena[]> {
+        const output: Arena[] = [];
+        const arenas = (await this.db.k('match').select('arena')).map(a => a.arena);
+        for (const arena of arenas) {
+            if (!output.some(a => a.name === arena.name)) {
+                output.push(arena);
+            }
+        }
+        return output;
     }
 }
 

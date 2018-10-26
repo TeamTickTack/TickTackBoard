@@ -1,0 +1,411 @@
+{
+  "settings": {
+    "languages": [
+      "de"
+    ],
+    "fullSearchWhenGuessed": true,
+    "useNlg": true,
+    "useNeural": true
+  },
+  "languages": [
+    "de"
+  ],
+  "intentDomains": {
+    "goalScored": "default"
+  },
+  "nerManager": {
+    "settings": {},
+    "threshold": 0.8,
+    "builtins": [
+      "Number",
+      "Ordinal",
+      "Percentage",
+      "Age",
+      "Currency",
+      "Dimension",
+      "Temperature",
+      "DateTime",
+      "PhoneNumber",
+      "IpAddress",
+      "Boolean",
+      "Email",
+      "Hashtag",
+      "URL"
+    ],
+    "namedEntities": {
+      "player": {
+        "type": "enum",
+        "name": "player",
+        "localeFallback": {
+          "*": "en"
+        },
+        "locales": {
+          "de": {
+            "450B9C31-89FC-4759-BDEF-69A6EB45AE52": [
+              "Marco",
+              "Wölfli",
+              null
+            ],
+            "09893AC8-2427-49CC-8CC7-48776322C22C": [
+              "David",
+              "von Ballmoos",
+              null
+            ],
+            "EDB2C4E9-C85F-4246-91D5-C3D1540520A6": [
+              "Dario Nicola",
+              "Marzino",
+              "Dario Marzino"
+            ],
+            "1BD29F7A-D03B-46FD-BC5E-BEB278FAD29B": [
+              "Mohamed Ali",
+              "Camara",
+              null
+            ],
+            "AF0EAD3B-A0D5-4ADF-BB8D-DE8A43B2647F": [
+              "Steve",
+              "von Bergen",
+              null
+            ],
+            "F00D3779-AD68-433B-A329-5EB3EB149722": [
+              "Ulisses Alexandre",
+              "Garcia Lopes",
+              "Ulisses Garcia"
+            ],
+            "F37F0B8F-257D-48E5-8F23-7641B5299911": [
+              "Gregory",
+              "Wüthrich",
+              null
+            ],
+            "0428A238-E186-4ABC-98A3-22ED78E275E3": [
+              "Loris",
+              "Benito Souto",
+              "Loris Benito"
+            ],
+            "9D7F38FC-9667-454D-B6CD-528F90F55DF5": [
+              "Jan",
+              "Kronig",
+              null
+            ],
+            "5708E39C-9DE8-4645-A78A-5DE9003446E2": [
+              "Léo Louis",
+              "Seydoux",
+              "Léo Seydoux"
+            ],
+            "66996403-490C-44BE-837B-AA72D7109C4E": [
+              "Melingo Kevin",
+              "Mbabu",
+              "Kevin Mbabu"
+            ],
+            "D8749CB5-0369-4469-8F10-CE56DB604B5F": [
+              "Leonardo",
+              "Bertone",
+              null
+            ],
+            "9A7BE4A1-B7E7-49F5-8137-7380B3A22A58": [
+              "Miralem",
+              "Sulejmani",
+              null
+            ],
+            "BB091340-24C2-4348-BDF1-A130C38E5933": [
+              "Mohameth Djibril Ibrahima",
+              "Sow",
+              "Djibril Sow"
+            ],
+            "EAC13D6E-4E4F-4E3A-AEB7-9698681688B3": [
+              "Nicolas Brice",
+              "Moumi Ngamaleu",
+              "Nicolas Moumi Ngamaleu"
+            ],
+            "A800C995-EBA9-463D-9400-BBDF48D518EE": [
+              "Christian",
+              "Fassnacht",
+              null
+            ],
+            "1E2F3CEA-8A39-4F58-AD4B-982B8303BFB1": [
+              "Thorsten",
+              "Schick",
+              null
+            ],
+            "7A71C82F-5411-48A7-A254-5893ACD7CE97": [
+              "Michel",
+              "Aebischer",
+              null
+            ],
+            "E08A0E00-A894-49CD-BAFA-940FF94BA004": [
+              "Daniel Pedro",
+              "Martinho Teixeira",
+              "Pedro Teixeira"
+            ],
+            "9B372E48-9D89-46AC-A230-E044B7BF870C": [
+              "Mvula Jordan",
+              "Lotomba",
+              "Jordan Lotomba"
+            ],
+            "E949E289-687C-4C0A-9DD0-C446D306E80C": [
+              "Sandro Mike",
+              "Lauper",
+              "Sandro Lauper"
+            ],
+            "0C1E147D-37A9-4483-B381-46C97D64E2E4": [
+              "Sékou Junior",
+              "Sanogo",
+              "Sékou Sanogo"
+            ],
+            "804A3EFE-3923-42B5-8012-05CB9DAFD9F3": [
+              "Roger Claver Djapone",
+              "Assalé",
+              "Roger Assalé"
+            ],
+            "E4578DD3-FEE2-4065-A489-51BB4BDAEA21": [
+              "Jean-Pierre Junior",
+              "Nsame",
+              "Jean-Pierre Nsame"
+            ],
+            "3420F77D-4EEE-4DFE-B5E8-F0BF46EEBBEE": [
+              "Guillaume",
+              "Hoarau",
+              null
+            ]
+          }
+        }
+      },
+      "goal": {
+        "type": "enum",
+        "name": "goal",
+        "localeFallback": {
+          "*": "en"
+        },
+        "locales": {
+          "de": {
+            "Tor": [
+              "Tor",
+              "Goal",
+              "Punkt"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "slotManager": {
+    "goalScored": {
+      "player": {
+        "intent": "goalScored",
+        "entity": "player",
+        "mandatory": false,
+        "locales": {}
+      },
+      "goal": {
+        "intent": "goalScored",
+        "entity": "goal",
+        "mandatory": false,
+        "locales": {}
+      }
+    }
+  },
+  "classifiers": [
+    {
+      "language": "de",
+      "docs": [
+        {
+          "intent": "goalScored",
+          "utterance": [
+            "%player%",
+            "hat",
+            "ein",
+            "%goal%",
+            "geschoss"
+          ]
+        },
+        {
+          "intent": "goalScored",
+          "utterance": [
+            "%player%",
+            "hat",
+            "das",
+            "%goal%",
+            "getroff"
+          ]
+        },
+        {
+          "intent": "goalScored",
+          "utterance": [
+            "%team%",
+            "geh",
+            "dank",
+            "ein",
+            "%goal%",
+            "von",
+            "%player%",
+            "in",
+            "fuhrung"
+          ]
+        },
+        {
+          "intent": "goalScored",
+          "utterance": [
+            "%player%",
+            "trifft",
+            "zum",
+            "ausgleich"
+          ]
+        }
+      ],
+      "features": {
+        "%player%": 4,
+        "hat": 2,
+        "ein": 2,
+        "%goal%": 3,
+        "geschoss": 1,
+        "das": 1,
+        "getroff": 1,
+        "%team%": 1,
+        "geh": 1,
+        "dank": 1,
+        "von": 1,
+        "in": 1,
+        "fuhrung": 1,
+        "trifft": 1,
+        "zum": 1,
+        "ausgleich": 1
+      },
+      "logistic": {
+        "observations": {
+          "goalScored": [
+            [
+              1,
+              2,
+              3,
+              4
+            ],
+            [
+              1,
+              3,
+              5,
+              6
+            ],
+            [
+              2,
+              3,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12
+            ],
+            [
+              13,
+              14,
+              15
+            ]
+          ]
+        },
+        "labels": [
+          "goalScored"
+        ],
+        "observationCount": 4,
+        "theta": [
+          {
+            "elements": [
+              1.6927438794289682,
+              0.8049850137349178,
+              0.7799131234357208,
+              1.1874101664964263,
+              0.3974879706742123,
+              0.40749704306070533,
+              0.40749704306070533,
+              0.3824251527615083,
+              0.3824251527615083,
+              0.3824251527615083,
+              0.3824251527615083,
+              0.3824251527615083,
+              0.3824251527615083,
+              0.5053337129325419,
+              0.5053337129325419,
+              0.5053337129325419
+            ]
+          }
+        ]
+      },
+      "useNeural": true,
+      "neuralClassifier": {
+        "settings": {
+          "config": {
+            "activation": "leaky-relu",
+            "hiddenLayers": [],
+            "learningRate": 0.1,
+            "errorThresh": 0.0005
+          }
+        },
+        "classifierMap": {
+          "goalScored": {
+            "sizes": [
+              16,
+              1
+            ],
+            "layers": [
+              {
+                "%player%": {},
+                "hat": {},
+                "ein": {},
+                "%goal%": {},
+                "geschoss": {},
+                "das": {},
+                "getroff": {},
+                "%team%": {},
+                "geh": {},
+                "dank": {},
+                "von": {},
+                "in": {},
+                "fuhrung": {},
+                "trifft": {},
+                "zum": {},
+                "ausgleich": {}
+              },
+              {
+                "0": {
+                  "bias": 26.62138557434082,
+                  "weights": {
+                    "%player%": 29.587505340576172,
+                    "hat": 13.103597640991211,
+                    "ein": 9.303011894226074,
+                    "%goal%": 16.39120864868164,
+                    "geschoss": 5.8106842041015625,
+                    "das": 7.228511333465576,
+                    "getroff": 7.15814208984375,
+                    "%team%": 3.2184133529663086,
+                    "geh": 3.0543503761291504,
+                    "dank": 3.206625461578369,
+                    "von": 3.366266965866089,
+                    "in": 3.2034521102905273,
+                    "fuhrung": 3.1577775478363037,
+                    "trifft": 13.170409202575684,
+                    "zum": 13.199081420898438,
+                    "ausgleich": 13.206689834594727
+                  }
+                }
+              }
+            ],
+            "outputLookup": false,
+            "inputLookup": true,
+            "activation": "leaky-relu",
+            "trainOpts": {
+              "iterations": 20000,
+              "errorThresh": 0.0005,
+              "log": false,
+              "logPeriod": 10,
+              "learningRate": 0.1,
+              "momentum": 0.1,
+              "callbackPeriod": 10,
+              "beta1": 0.9,
+              "beta2": 0.999,
+              "epsilon": 1e-8
+            }
+          }
+        }
+      }
+    }
+  ],
+  "responses": {}
+}

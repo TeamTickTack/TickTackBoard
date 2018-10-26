@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { TickerMessageDto } from './dtos/tickerMessage.dto';
 import { MessageService } from './message.service';
 import { Message } from './model/message';
@@ -19,5 +19,4 @@ export class TickerController {
     //   player.content = PlayerInfoDto.FromPlayer({ name: 'Lukas' });
       return Promise.resolve(response);
    }
-
 }
