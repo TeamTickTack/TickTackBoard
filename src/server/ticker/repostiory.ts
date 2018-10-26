@@ -33,14 +33,12 @@ export class Repository {
     }
 
     public async getArenas(): Promise<Arena[]> {
-        const output: Arena[] = [];
-        const arenas = (await this.db.k('match').select('arena')).map(a => a.arena);
-        for (const arena of arenas) {
-            if (!output.some(a => a.name === arena.name)) {
-                output.push(arena);
-            }
-        }
-        return output;
+        return await this.db.k('arena');
+
+    }
+
+    public async findArena(uid: string): Promise<Arena> {
+        return await this.db.k('arena').first().where({ uid });
     }
 }
 
