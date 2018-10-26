@@ -16,7 +16,7 @@ export class TickerController {
       const response: TickerHelperDto[] = [];
       const player = new TickerHelperDto();
       player.type = TickerHelperType.playerInfo;
-      player.content = PlayerInfoDto.FromPlayer({ name: 'Lukas' });
+    //   player.content = PlayerInfoDto.FromPlayer({ name: 'Lukas' });
       return Promise.resolve(response);
    }
 
