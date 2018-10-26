@@ -1,0 +1,17 @@
+{
+   "type": "mssql",
+   "host": "ticktack.database.windows.net",
+   "port": 1433,
+   "username": "ticktackadmin",
+   "password": "Ticktack18",
+   "database": "TickTack",
+   "synchronize": true,
+   "logging": ["log"],
+   "timezone":"+00:00",
+   "cli": {
+        "migrationsDir": "migrations"
+    },
+   "entities": [
+      "src/**/**.entity{.ts,.js}"
+   ]
+}

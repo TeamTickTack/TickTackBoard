@@ -1,0 +1,4 @@
+enum MatchAction{
+   goal,
+   foul,
+}

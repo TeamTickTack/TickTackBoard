@@ -1,5 +1,5 @@
 {
-  "watch": ["src"],
+  "watch": ["src/server"],
   "ext": "ts",
   "ignore": ["src/**/*.spec.ts"],
   "exec": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register src/main.ts"

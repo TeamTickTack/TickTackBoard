@@ -7,7 +7,7 @@
 ## Installation
 
 ```bash
-$ npm install -g @angular/cli
+$ npm
 $ npm install
 ```
 
