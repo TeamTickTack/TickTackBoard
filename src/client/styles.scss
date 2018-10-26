@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+$body-bg: #f8f8f7;
+$yellow: #ffcf00;
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+body {
+    color: #4a4a4a;
+}
+
+.btn {
+    border-radius: 0;
+}
