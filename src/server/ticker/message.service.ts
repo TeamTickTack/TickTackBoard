@@ -5,6 +5,7 @@ import { Repository } from './repostiory';
 import { Player } from './model/player';
 import { existsSync } from 'fs';
 import { Arena } from './model/arena';
+import { DbService } from '../../server/db/db.service';
 const { NlpManager } = require('node-nlp');
 
 @Injectable()
@@ -82,3 +83,5 @@ export interface ParsingSentiment {
    numWord: number;
    numHits: number;
 }
+
+new MessageService(new Repository(new DbService())).parse({message:'Wölfli trifft zum Ausgleich'}).then(console.log);
