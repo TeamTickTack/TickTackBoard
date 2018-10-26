@@ -10,7 +10,7 @@ export class Repository {
         return await this.db.k('player').first().where({ uid });
     }
 
-    public async getPlayer(): Promise<Player[]>  {
+    public async getPlayers(): Promise<Player[]>  {
         return await this.db.k('player');
     }
 }
