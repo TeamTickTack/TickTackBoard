@@ -21,6 +21,15 @@ body {
     min-height: 120px;
 }
 
+.picture-area {
+    background-position: center;
+    height: 200px;
+    background-size: cover;
+    padding: 10px 20px;
+    color: white;
+    margin-top: 20px;
+}
+
 .card-type {
     float: right;
     font-size: 14px;

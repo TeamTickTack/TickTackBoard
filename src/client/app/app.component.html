@@ -28,6 +28,7 @@
             <span class="col-title font-weight-bold">INFOS</span>
             <div *ngFor="let info of tickerInfos">
                 <app-player-card [playerInfo]="info" *ngIf="info.type == 'player'"></app-player-card>
+                <app-arena-card [arenaInfo]="info" *ngIf="info.type == 'arena'"></app-arena-card>
             </div>
         </div>
     </div>

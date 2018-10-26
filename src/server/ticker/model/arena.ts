@@ -5,4 +5,5 @@ export class Arena {
     zip: string;
     city: string;
     capacity: string;
+    img: string;
 }

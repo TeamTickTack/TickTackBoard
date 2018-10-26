@@ -11,6 +11,7 @@ import { AppService } from './app.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http'; 
 import { MatchComponent } from './components/match/match.component';
+import { ArenaComponent } from './components/info-cards/arena/arena.component';
  
 library.add(fas, far);
 
@@ -18,7 +19,8 @@ library.add(fas, far);
   declarations: [
     AppComponent,
     PlayerComponent,
-    MatchComponent
+    MatchComponent,
+    ArenaComponent
   ],
   imports: [
     CommonModule,
