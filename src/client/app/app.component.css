@@ -53,3 +53,7 @@ textarea {
     border-radius: 5px;
     margin-top: 10px;
 }
+
+.history-item > .hi-header {
+    margin-bottom: 5px;
+}

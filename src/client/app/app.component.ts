@@ -19,6 +19,10 @@ export class AppComponent {
       this.message = "";
     }
 
+    public processMessage() {
+      
+    }
+
     public test() {
       const inf = new PlayerTickerInfo();
       inf.type = "player";
