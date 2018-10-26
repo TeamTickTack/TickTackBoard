@@ -10,13 +10,15 @@ import { PlayerComponent } from './components/info-cards/player/player.component
 import { AppService } from './app.service';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http'; 
+import { MatchComponent } from './components/match/match.component';
  
 library.add(fas, far);
 
 @NgModule({
   declarations: [
     AppComponent,
-    PlayerComponent
+    PlayerComponent,
+    MatchComponent
   ],
   imports: [
     CommonModule,

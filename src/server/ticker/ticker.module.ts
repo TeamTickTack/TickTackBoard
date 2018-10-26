@@ -4,11 +4,12 @@ import { DbModule } from 'server/db/db.module';
 import { TickerController } from './ticker.controller';
 import { Repository } from './repostiory';
 import { TickerService } from './ticker.service';
+import { DataService } from './data.service';
 
 @Module({
    imports: [DbModule],
    controllers: [TickerController],
-   providers: [MessageService, TickerService, Repository],
+   providers: [MessageService, TickerService, Repository, DataService],
 })
 export class TickerModule {
 

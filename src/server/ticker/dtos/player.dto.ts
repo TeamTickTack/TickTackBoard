@@ -7,12 +7,15 @@ export class PlayerDto extends KontextInfoDto {
         dto.type = 'player';
         dto.nummer = player.shirt_nr;
         dto.assists = player.assists;
-        dto.geburtsdatum = player.date_of_birth;
+        dto.geburtsdatum = player.formatted_date_of_birth;
         dto.tore = player.goals;
+        dto.gespielteMinuten = player.minutes_played;
+        dto.gehalteneSchuesse = player.held_shots;
         dto.matches = player.matches_played;
         dto.position = player.position;
         dto.nationalitaet = player.nationality;
         dto.gelbeKarten = player.yellow_cards;
+        dto.roteKarten = player.red_cards;
         dto.firstName = player.first_name;
         dto.lastName = player.last_name;
         return dto;
@@ -29,6 +32,8 @@ export class PlayerDto extends KontextInfoDto {
     roteKarten: string;
     gelbeKarten: string;
     matchInfosZumSpieler: string;
+    gespielteMinuten: string;
     matches: string;
     spielerForm: string; // Wie hat er in den letzten drei Spielen gespielt
+    gehalteneSchuesse: number;
 }

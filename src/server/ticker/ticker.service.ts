@@ -23,7 +23,7 @@ export class TickerService {
       const info = [];
       for (const player of data.entities.filter(e => e.entity === 'player')) {
         const playerUid = player.option;
-        info.push(PlayerDto.fromPlayer(await this.repository.findPlayer(playerUid)));
+        if (playerUid) info.push(PlayerDto.fromPlayer(await this.repository.findPlayer(playerUid)));
       }
       return info;
    }

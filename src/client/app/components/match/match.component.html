@@ -1,0 +1,11 @@
+<div class="teams-group">
+    <label for="home">Heim</label>
+    <select class="form-control" id="home" required>
+        <option *ngFor="let team of teams" [value]="team.uid" [selected]="homeTeam">{{team.name}}</option>
+    </select>
+    <label for="guets">Gast</label>
+    <select class="form-control" id="guest" required>
+        <option *ngFor="let team of teams" [value]="team.uid" [selected]="guestTeam">{{team.name}}</option>
+    </select>
+</div>
+<button (click)="startGame()">Spiel starten</button>
