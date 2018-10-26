@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { AppService } from './app.service';
 
-import { TickerHelperDto } from '../../server/ticker/dtos/tickerHelper.dto'
-import { TickerMessageDto } from '../../server/ticker/dtos/tickerMessage.dto';
+// import { KontextInfoDto } from '../../server/ticker/dtos/'
 
 @Component({
   selector: 'app-root',
@@ -12,7 +11,7 @@ import { TickerMessageDto } from '../../server/ticker/dtos/tickerMessage.dto';
 export class AppComponent {
     public message;
     public posts: Post[] = [];
-    public tickerInfos: TickerHelperDto[] = [];
+    public tickerInfos: KontextInfoDto[] = [];
 
     private timeoutId = 0;
 

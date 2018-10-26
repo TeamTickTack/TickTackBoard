@@ -1,6 +1,9 @@
-export class PlayerDto {
+import { KontextInfoDto } from './kontextInfo.dto';
+
+export class PlayerDto extends KontextInfoDto {
     // portrait:   Spielerporträt (Foto)
-    playerName: string;
+    firstName: string;
+    lastName: string;
     position: string;
     geburtsdatum: string;
     nationalitaet: string;
