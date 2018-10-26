@@ -5,7 +5,12 @@
         <span class="font-weight-light" style="font-size: 31px;display: block;text-align: center;">{{playerInfo.nummer}}</span>
     </div>
     <div style="float:left;padding-left: 25px;">
-        <span class="name">{{playerInfo.firstName}} {{playerInfo.lastName}} </span> <span class="font-weight-light"> / Torwart</span>
+        <span class="name">{{playerInfo.firstName}} {{playerInfo.lastName}} </span> <span class="font-weight-light"> / 
+            <span *ngIf="playerInfo.position == '1'">Torwart</span>
+            <span *ngIf="playerInfo.position == '2'">Verteidiger</span>
+            <span *ngIf="playerInfo.position == '3'">Mittelfeldspieler</span>
+            <span *ngIf="playerInfo.position == '4'">Stürmer</span>
+        </span>
         <table style="margin-top: 12px;">
             <tr>
                 <td><fa-icon [icon]="'running'"></fa-icon> Gespielte Matches</td>
