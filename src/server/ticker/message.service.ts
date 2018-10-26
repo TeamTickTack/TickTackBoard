@@ -1,11 +1,9 @@
 import { MessagePart } from './model/messagePart';
 import { Message } from './model/message';
 import { Injectable } from '@nestjs/common';
-import { any } from 'bluebird';
 import { Repository } from './repostiory';
 import { Player } from './model/player';
 import { existsSync } from 'fs';
-import { DbService } from '../../server/db/db.service';
 const { NlpManager } = require('node-nlp');
 
 @Injectable()
@@ -75,6 +73,3 @@ export interface ParsingSentiment {
    numWord: number;
    numHits: number;
 }
-
-const msgService = new MessageService(new Repository(new DbService()));
-// msgService.parse({ message: "wolf " }).then(console.log);
