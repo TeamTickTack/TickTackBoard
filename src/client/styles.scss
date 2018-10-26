@@ -11,3 +11,22 @@ body {
 .btn {
     border-radius: 0;
 }
+
+.info-card {
+    background-color: white;
+    width: 100%;
+    padding: 10px 20px;
+    margin-top: 20px;
+    overflow: hidden;
+    min-height: 120px;
+}
+
+.card-type {
+    float: right;
+    font-size: 14px;
+    font-weight: bold;
+    color: #d2d2d2;
+    margin-top: 2px;
+    width: 100%;
+    text-align: right;
+}

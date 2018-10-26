@@ -1,18 +1,31 @@
-<!-- 
-<fa-icon icon="coffee"></fa-icon> -->
 <div class="container-fluid body-content">
     <div class="header">
         <h1 class="font-weight-light">TickTack</h1>
     </div>
     <div class="row">
         <div class="col-md-6 ticker-col">
-            <span class="col-title font-weight-bold">TICKER</span>
-            <textarea class="ticker" placeholder="Type your message here..."></textarea>
-            <button style="float:right;" class="btn btn-warning">Publish</button>
+            <div class="ticker-compose">
+                <span class="col-title font-weight-bold">TICKER</span>
+                <textarea [(ngModel)]="message" class="ticker" placeholder="Type your message here..."></textarea>
+                <button style="float:right;" class="btn btn-warning" (click)="addPost()">Publish</button>
+            </div>
+            <div class="ticker-history">
+                <span class="col-title font-weight-bold">TICKER HISTORY</span>
+                <div class="history" style="width: 100%;">
+                    <div class="history-item" *ngFor="let item of posts">
+                        <div class="hi-header">
+                            <fa-icon icon="user"></fa-icon> Editor <span style="float:right;">{{item.date | date: 'dd.MM.yy, HH:mm:ss'}}</span>
+                        </div>
+                        {{item.message}}
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-md-6 info-col">
             <span class="col-title font-weight-bold">INFOS</span>
-            <div class="info-card"></div>
+            <div *ngFor="let info of tickerInfos">
+                <app-player-card [playerInfo]="info" *ngIf="info.type == 'player'"></app-player-card>
+            </div>
         </div>
     </div>
 </div>
