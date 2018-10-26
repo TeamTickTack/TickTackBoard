@@ -2,6 +2,7 @@ import { MessagePart } from './model/messagePart';
 import { Message } from './model/message';
 import { Injectable } from '@nestjs/common';
 import { any } from 'bluebird';
+import { Repository } from './repostiory';
 const { NlpManager } = require('node-nlp');
 
 @Injectable()
