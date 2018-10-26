@@ -1,0 +1,39 @@
+.body-content {
+    padding: 50px 100px;
+}
+
+.header {
+    margin-bottom: 50px;
+}
+
+.ticker-col {
+
+}
+
+.info-col {
+    min-height: 300px;
+    padding-left: 30px;
+}
+
+.info-card {
+    background-color: white;
+}
+
+textarea {
+    background-color: white;
+    border-color: #ccc;
+    color: black;
+    padding: 10px;
+    width: 100%;
+    margin-top: 20px;
+    min-height: 150px;
+    font-size: 18px;
+}
+
+.btn.btn-warning {
+    float: right;
+    padding: 7px 34px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+}
