@@ -17,7 +17,6 @@ export class AppComponent {
     private timeoutId = 0;
 
     constructor(private appService: AppService) {
-
     }
 
     public addPost() {
@@ -37,7 +36,25 @@ export class AppComponent {
     }
 
 
-    private playerInfo = ["Wölfli", "Marco Wölfli" "Peter", "Lukas"];
+    private playerInfo = [];
+
+    private updatePlayerInfo(homeTeam: string, guestTeam: string) {
+        this.playerInfo = [];
+        this.appService.getPlayersOfTeam(homeTeam).subscribe(players => {
+            players.forEach(player => {
+
+                this.playerInfo.push(player.lastName);
+                this.playerInfo.push(player.firstName + " " + player.lastName);
+            })
+        });
+        this.appService.getPlayersOfTeam(guestTeam).subscribe(players => {
+            players.forEach(player => {
+
+                this.playerInfo.push(player.lastName);
+                this.playerInfo.push(player.firstName + " " + player.lastName);
+            })
+        });
+    }
 
     private autocomplete(message: string) {
         const lastWord = this.getLastWord(message);
@@ -53,6 +70,10 @@ export class AppComponent {
     private getLastWord(message): string {
         const parts = message.split(' ');
         return parts[parts.length - 1];
+    }
+
+    public gameStarted(event) {
+        this.updatePlayerInfo(event.homeTeamUid,event.guestTeamUid);
     }
 
     public applyAutocompte(event: Event) {

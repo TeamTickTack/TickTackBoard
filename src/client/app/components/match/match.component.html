@@ -8,4 +8,4 @@
         <option *ngFor="let team of teams" [value]="team.uid" [selected]="guestTeam">{{team.name}}</option>
     </select>
 </div>
-<button (click)="startGame()">Spiel starten</button>
+<button class="btn btn-warning" (click)="startGame()">Spiel starten</button>
