@@ -43,11 +43,12 @@ export class AppComponent {
         const lastWord = this.getLastWord(message);
         this.suggestedText = "";
         if (lastWord.length > 0)
-            this.playerInfo.forEach(player => {
-                if (player.toLowerCase().startsWith(lastWord.toLowerCase()))
-                    this.suggestedText = player;
+            if (!this.playerInfo.includes(lastWord))
+                this.playerInfo.forEach(player => {
+                    if (player.toLowerCase().startsWith(lastWord.toLowerCase()))
+                        this.suggestedText = player;
 
-            })
+                })
     }
     private getLastWord(message): string {
         const parts = message.split(' ');
