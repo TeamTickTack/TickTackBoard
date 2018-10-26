@@ -3,7 +3,7 @@ import { Repository } from './repostiory';
 import { MessageService, ParsedMessage } from './message.service';
 import { KontextInfoDto } from './dtos/kontextInfo.dto';
 import { PlayerDto } from './dtos/player.dto';
-import {StadionDto} from "./dtos/stadion.dto";
+import { StadionDto } from "./dtos/stadion.dto";
 
 @Injectable()
 export class TickerService {
@@ -19,7 +19,7 @@ export class TickerService {
         return infos;
     }
 
-    private async checkPlayer(data: ParsedMessage): Promise<Array<KontextInfoDto>> {
+    private async checkPlayer(data: ParsedMessage): Promise<Array<PlayerDto>> {
         const info = [];
         const foundPlayers: Array<string> = [];
         for (const player of data.entities) {
@@ -29,19 +29,21 @@ export class TickerService {
             if (playerUid) {
                 if (!foundPlayers.some((u) => u === playerUid)) {
                     foundPlayers.push(playerUid);
-                    info.push(PlayerDto.fromPlayer(await this.repository.findPlayer(playerUid)));
+                    const dto = PlayerDto.fromPlayer(await this.repository.findPlayer(playerUid));
+                    dto.action = data.intent;
+                    info.push(dto);
                 }
             }
         }
         return info;
     }
-   public async checkStadion(data: ParsedMessage): Promise<Array<KontextInfoDto>> {
-       const info = [];
-       for (const arena of data.entities.filter(e => e.entity === 'arena')) {
-           const areaUid = arena.option;
+    public async checkStadion(data: ParsedMessage): Promise<Array<KontextInfoDto>> {
+        const info = [];
+        for (const arena of data.entities.filter(e => e.entity === 'arena')) {
+            const areaUid = arena.option;
 
-           info.push(StadionDto.fromArena(await this.repository.findArena(areaUid)));
-       }
-       return info;
-   }
+            info.push(StadionDto.fromArena(await this.repository.findArena(areaUid)));
+        }
+        return info;
+    }
 }

@@ -36,4 +36,5 @@ export class PlayerDto extends KontextInfoDto {
     matches: string;
     spielerForm: string; // Wie hat er in den letzten drei Spielen gespielt
     gehalteneSchuesse: number;
+    action: string;
 }
