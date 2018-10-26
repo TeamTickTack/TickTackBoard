@@ -8,6 +8,7 @@
 .idea/**/tasks.xml
 .idea/dictionaries
 
+model.json
 # Sensitive or high-churn files:
 .idea/**/dataSources/
 .idea/**/dataSources.ids

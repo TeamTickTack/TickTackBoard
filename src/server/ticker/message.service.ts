@@ -4,6 +4,7 @@ import { Injectable } from '@nestjs/common';
 import { Repository } from './repostiory';
 import { Player } from './model/player';
 import { existsSync } from 'fs';
+import { Arena } from './model/arena';
 const { NlpManager } = require('node-nlp');
 
 @Injectable()
@@ -20,7 +21,7 @@ export class MessageService {
    public async trainModel() {
       const players: Array<Player> = await this.repositroy.getPlayers();
       players.forEach(player => {
-         let synonyms = [];
+         const synonyms = [];
          if (player.first_name)
             synonyms.push(player.first_name);
          if (player.last_name)
@@ -29,6 +30,14 @@ export class MessageService {
             synonyms.push(player.nickname);
          this.manager.addNamedEntityText('player', player.uid, ['de'], synonyms);
       });
+
+      const arenas: Array<Arena> = await this.repositroy.getArenas();
+      arenas.forEach(arena => {
+         const synonyms = [];
+         synonyms.push(arena.name);
+         this.manager.addNamedEntityText('arena', arena.name, ['de'], synonyms);
+      });
+
       this.manager.addNamedEntityText('goal', 'Tor', ['de'], ['Tor', 'Goal', 'Punkt']);
       this.manager.addDocument('de', '%player% hat ein %goal% geschossen.', 'goalScored');
       this.manager.addDocument('de', '%player% hat das %goal% getroffen.', 'goalScored');
