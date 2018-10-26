@@ -11,7 +11,7 @@ export class TickerService {
     }
 
     private checkPlayer(data) {
-
+        
     }
 
     public checkStadion(data) {
