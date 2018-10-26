@@ -4,6 +4,8 @@ import { Injectable } from '@nestjs/common';
 import { any } from 'bluebird';
 import { Repository } from './repostiory';
 import { Player } from './model/player';
+import { existsSync } from 'fs';
+import { DbService } from 'server/db/db.service';
 const { NlpManager } = require('node-nlp');
 
 @Injectable()
@@ -11,10 +13,14 @@ export class MessageService {
    private readonly manager = new NlpManager({ languages: ['de'] });
    private readonly filePath = 'model.json';
    constructor(private readonly repositroy: Repository) {
-      this.manager.load(this.filePath);
+      if (existsSync(this.filePath))
+         this.manager.load(this.filePath);
+      else {
+         this.trainModel();
+      }
    }
-   private async trainModel() {
-      const players: Array<Player> = this.repositroy.getPlayers();
+   public async trainModel() {
+      const players: Array<Player> = await this.repositroy.getPlayers();
       players.forEach(player => {
          this.manager.addNamedEntityText('player', player.uid, ['de'], [player.first_name, player.last_name, player.nickname]);
       });
@@ -35,4 +41,4 @@ export class MessageService {
    }
 }
 
-// new MessageService(null).Parse({ message: 'Jonas hat getroffen!' });
+// new MessageService(new Repository(new DbService())).trainModel();

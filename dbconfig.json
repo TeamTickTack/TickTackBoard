@@ -1,9 +1,12 @@
 {
-    "client": "mssql",
-    "connection": {
-       "host": "ticktack.database.windows.net",
-       "user": "ticktackadmin",
-       "password": "Ticktack18",
-       "database": "TickTack"
-    }
- }
+   "client": "mssql",
+   "connection": {
+      "host": "ticktack.database.windows.net",
+      "user": "ticktackadmin",
+      "password": "Ticktack18",
+      "database": "TickTack",
+      "options": {
+         "encrypt": true
+      }
+   }
+}
