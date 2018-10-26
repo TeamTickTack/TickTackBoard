@@ -31,7 +31,7 @@ export class Repository {
         return await this.db.k('ranking');
     }
 
-    public async getStadions() {
+    public async getArenas() {
         const output = [];
         const arenas = (await this.db.k('match').select('arena')).map(a => a.arena);
         for (const arena of arenas) {
