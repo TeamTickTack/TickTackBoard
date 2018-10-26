@@ -1,6 +1,5 @@
 import { MessagePart } from './model/messagePart';
 import { Message } from './model/message';
-import { PlayerRepository } from './player.repostiory';
 import { Injectable } from '@nestjs/common';
 import { any } from 'bluebird';
 const { NlpManager } = require('node-nlp');

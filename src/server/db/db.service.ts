@@ -1,18 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import * as knex from 'knex';
+
+// tslint:disable-next-line:no-var-requires
+const config = require('../../../dbconfig.json');
+
 @Injectable()
 export class DbService {
    private knex: knex;
    constructor() {
-      this.knex = knex({
-         client: 'mssql',
-         connection: {
-            host: 'ticktack.database.windows.net',
-            user: 'ticktackadmin',
-            password: 'Ticktack18',
-            database: 'TickTack',
-         },
-      });
+      this.knex = knex(config);
    }
    public get k(): knex {
       return this.knex;

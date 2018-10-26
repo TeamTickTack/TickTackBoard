@@ -37,3 +37,23 @@ textarea {
     font-size: 16px;
     font-weight: 500;
 }
+
+.ticker-compose {
+    overflow: hidden;
+}
+
+.ticker-history {
+    width: 100%;
+}
+
+.history-item {
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #eaeaea;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.history-item > .hi-header {
+    margin-bottom: 5px;
+}
