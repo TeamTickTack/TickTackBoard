@@ -51,10 +51,10 @@ export class MessageService {
         this.manager.addDocument('de', '%player% bekommt Gelb', 'yellowCard');
         this.manager.addDocument('de', 'Gelb für %player%', 'yellowCard');
         this.manager.addDocument('de', '%player% bekommt Rot', 'redCard');
-        this.manager.addDocumnet('de', '%player% Rote Karte', 'redCard');
-        this.manager.addDocumnet('de', '%player% Gelbe Karte', 'yellowCard');
-        this.manager.addDocumnet('de', '%player% trifft', 'goalScored');
-        this.manager.addDocumnet('de', '%player% trifft die Latte', 'latte');
+        this.manager.addDocument('de', '%player% Rote Karte', 'redCard');
+        this.manager.addDocument('de', '%player% Gelbe Karte', 'yellowCard');
+        this.manager.addDocument('de', '%player% trifft', 'goalScored');
+        this.manager.addDocument('de', '%player% trifft die Latte', 'latte');
         await this.manager.train();
         this.manager.save(this.filePath);
     }
@@ -93,4 +93,4 @@ export interface ParsingSentiment {
 }
 
 const s = new MessageService(new Repository(new DbService()));
-s.parse("Gelb für Woelfli").then(console.log)
+
