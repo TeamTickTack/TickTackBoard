@@ -1,22 +1,41 @@
 <div class="info-card">
     <span class="card-type">PLAYER</span>
-    <img style="float:left; height: 110px;" src="https://ticktack.blob.core.windows.net/ybpictures/{{playerInfo.firstName}}_{{playerInfo.lastName}}.png"> <span class="name" style="float:left;">{{playerInfo.firstName}} {{playerInfo.lastName}}</span>
-    <table>
-        <tr>
-            <td>Nummer</td>
-            <td>{{playerInfo.nummer}}</td>
-        </tr>
-        <tr>
-            <td>Gespielte Matches</td>
-            <td>{{playerInfo.matches}}</td>
-        </tr>
-        <tr>
-            <td>Karten</td>
-            <td>{{playerInfo.matches}}</td>
-        </tr>
-        <tr>
-            <td>Karten</td>
-            <td>{{playerInfo.matches}}</td>
-        </tr>
-    </table>
+    <div style="float:left;width: 150px;">
+        <img style="width: 150px;" src="https://ticktack.blob.core.windows.net/ybpictures/{{playerInfo.firstName}}_{{playerInfo.lastName}}.png"> 
+        <span class="font-weight-light" style="font-size: 31px;display: block;text-align: center;">{{playerInfo.nummer}}</span>
+    </div>
+    <div style="float:left;padding-left: 25px;">
+        <span class="name">{{playerInfo.firstName}} {{playerInfo.lastName}} </span> <span class="font-weight-light"> / Torwart</span>
+        <table style="margin-top: 12px;">
+            <tr>
+                <td><fa-icon [icon]="'running'"></fa-icon> Gespielte Matches</td>
+                <td>{{playerInfo.matches}} ({{playerInfo.gespielteMinuten}} min)</td>
+            </tr>
+            <tr>
+                <td><fa-icon [icon]="'futbol'"></fa-icon> Tore</td>
+                <td>{{playerInfo.tore}} ({{playerInfo.assists}} Assists)</td>
+            </tr>
+            <tr>
+                <td><fa-icon class="text-danger" [icon]="'clipboard'"></fa-icon> Karten</td>
+                <td>{{playerInfo.roteKarten}}</td>
+            </tr>
+            <tr>
+                <td><fa-icon class="text-warning" [icon]="'clipboard'"></fa-icon> Karten</td>
+                <td>{{playerInfo.gelbeKarten}}</td>
+            </tr>
+            <tr *ngIf="playerInfo.gehalteneSchuesse > 0">
+                <td><fa-icon [icon]="'hand-paper'"></fa-icon> Gehaltene Schuesse</td>
+                <td>{{playerInfo.gehalteneSchuesse}}</td>
+            </tr>
+            <hr>
+            <tr>
+                <td><fa-icon [icon]="'globe-americas'"></fa-icon> Nationalität</td>
+                <td>{{playerInfo.nationalitaet}}</td>
+            </tr>
+            <tr>
+                <td><fa-icon [icon]="'birthday-cake'"></fa-icon> Geburtsdatum</td>
+                <td>{{playerInfo.geburtsdatum}}</td>
+            </tr>
+        </table>
+    </div>
 </div>

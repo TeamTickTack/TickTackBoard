@@ -22,7 +22,7 @@ export class TickerService {
       const info = [];
       for (const player of data.entities) {
         const playerUid = player.option;
-        info.push(PlayerDto.fromPlayer(await this.repository.findPlayer(playerUid)));
+        if (playerUid) info.push(PlayerDto.fromPlayer(await this.repository.findPlayer(playerUid)));
       }
       return info;
    }

@@ -14,7 +14,7 @@ export class Player {
     assists: string;
     yellow_cards: string;
     red_cards: string;
-    held_shots: string;
+    held_shots: number;
     shots: string;
     minutes_played: string;
     substitutions: string;
