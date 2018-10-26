@@ -1,4 +1,4 @@
-import { ITickerHelperEntity } from './tickerHelperEntitiy.interfac';
+import { ITickerHelperEntity } from './tickerHelperEntitiy.interface';
 import { Player } from '../model/player';
 
 export class PlayerInfoDto implements ITickerHelperEntity {

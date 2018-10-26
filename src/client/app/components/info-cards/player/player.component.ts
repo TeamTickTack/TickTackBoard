@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { PlayerTickerInfo } from 'app/app.component';
+import { PlayerInfoDto } from '../../../../../server/ticker/dtos/playerInfo.dto'
 
 @Component({
   selector: 'app-player-card',
@@ -8,5 +8,5 @@ import { PlayerTickerInfo } from 'app/app.component';
 })
 export class PlayerComponent {
     @Input()
-    public playerInfo: PlayerTickerInfo;
+    public playerInfo: PlayerInfoDto;
 }

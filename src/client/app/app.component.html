@@ -6,7 +6,7 @@
         <div class="col-md-6 ticker-col">
             <div class="ticker-compose">
                 <span class="col-title font-weight-bold">TICKER</span>
-                <textarea (change)="processMessage()" [(ngModel)]="message" class="ticker" placeholder="Type your message here..."></textarea>
+                <textarea (keyup)="processMessage()" [(ngModel)]="message" class="ticker" placeholder="Type your message here..."></textarea>
                 <button style="float:right;" class="btn btn-warning" (click)="addPost()">Publish</button>
             </div>
             <div class="ticker-history">

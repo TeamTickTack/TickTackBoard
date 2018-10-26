@@ -7,6 +7,9 @@ import { far } from '@fortawesome/free-regular-svg-icons';
 import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { PlayerComponent } from './components/info-cards/player/player.component';
+import { AppService } from './app.service';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http'; 
  
 library.add(fas, far);
 
@@ -16,11 +19,13 @@ library.add(fas, far);
     PlayerComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     FontAwesomeModule,
-    FormsModule      
+    FormsModule,
+    HttpClientModule      
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-import { ITickerHelperEntity } from './tickerHelperEntitiy.interfac';
+import { ITickerHelperEntity } from './tickerHelperEntitiy.interface';
 
 export class TickerHelperDto {
    type: TickerHelperType;

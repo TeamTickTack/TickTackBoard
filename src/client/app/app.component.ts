@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { AppService } from './app.service';
+
+import { TickerHelperDto } from '../../server/ticker/dtos/tickerHelper.dto'
+import { TickerMessageDto } from '../../server/ticker/dtos/tickerMessage.dto';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +12,12 @@ import { Component } from '@angular/core';
 export class AppComponent {
     public message;
     public posts: Post[] = [];
-    public tickerInfos: TickerInfo[] = [];
+    public tickerInfos: TickerHelperDto[] = [];
 
-    constructor() {
-      this.test();
+    private timeoutId = 0;
+
+    constructor(private appService: AppService) {
+      
     }
 
     public addPost() {
@@ -20,16 +26,14 @@ export class AppComponent {
     }
 
     public processMessage() {
-      
+       // stop previous timeouts
+       clearTimeout(this.timeoutId)
+       this.timeoutId = setTimeout(() => {
+           this.appService.processMessage({ message: this.message }).subscribe(data => {
+              this.tickerInfos = data;
+           });
+        }, 100);
     }
-
-    public test() {
-      const inf = new PlayerTickerInfo();
-      inf.type = "player";
-      inf.name = "Max Muster";
-      this.tickerInfos.push(inf);
-    }
-    
 }
 
 export class Post {
@@ -39,13 +43,4 @@ export class Post {
     }
     date: Date;
     message: string;
-}
-
-export class TickerInfo {
-    type: string;
-}
-
-export class PlayerTickerInfo extends TickerInfo {
-    name: string;
-    pictureUrl: string
 }
