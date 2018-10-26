@@ -1,5 +1,4 @@
 import { MessagePart } from './model/messagePart';
-import { Message } from './model/message';
 import { Injectable } from '@nestjs/common';
 import { Repository } from './repostiory';
 import { Player } from './model/player';
@@ -32,12 +31,12 @@ export class MessageService {
          this.manager.addNamedEntityText('player', player.uid, ['de'], synonyms);
       });
 
-      const arenas: Array<Arena> = await this.repositroy.getArenas();
-      arenas.forEach(arena => {
-         const synonyms = [];
-         synonyms.push(arena.name);
-         this.manager.addNamedEntityText('arena', arena.name, ['de'], synonyms);
-      });
+    //   const arenas: Array<Arena> = await this.repositroy.getArenas();
+    //   arenas.forEach(arena => {
+    //      const synonyms = [];
+    //      synonyms.push(arena.name);
+    //      this.manager.addNamedEntityText('arena', arena.name, ['de'], synonyms);
+    //   });
 
       this.manager.addNamedEntityText('goal', 'Tor', ['de'], ['Tor', 'Goal', 'Punkt']);
       this.manager.addDocument('de', '%player% hat ein %goal% geschossen.', 'goalScored');
@@ -51,9 +50,8 @@ export class MessageService {
       this.manager.save(this.filePath);
    }
 
-   public async parse(message: Message): Promise<ParsedMessage> {
-      let result = await this.manager.process(message.message);
-
+   public async parse(message: string): Promise<ParsedMessage> {
+      const result = await this.manager.process(message);
       return result as ParsedMessage;
    }
 }
@@ -84,4 +82,3 @@ export interface ParsingSentiment {
    numHits: number;
 }
 
-new MessageService(new Repository(new DbService())).parse({message:'Wölfli trifft zum Ausgleich'}).then(console.log);

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AppService } from './app.service';
 
-// import { KontextInfoDto } from '../../server/ticker/dtos/'
+import { KontextInfoDto } from '../../server/ticker/dtos/kontextInfo.dto';
 
 @Component({
   selector: 'app-root',
@@ -29,6 +29,7 @@ export class AppComponent {
        clearTimeout(this.timeoutId)
        this.timeoutId = setTimeout(() => {
            this.appService.processMessage({ message: this.message }).subscribe(data => {
+             console.log(data)
               this.tickerInfos = data;
            });
         }, 100);
