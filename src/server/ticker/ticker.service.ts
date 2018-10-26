@@ -3,6 +3,7 @@ import { Repository } from './repostiory';
 import { MessageService, ParsedMessage } from './message.service';
 import { KontextInfoDto } from './dtos/kontextInfo.dto';
 import { PlayerDto } from './dtos/player.dto';
+import {StadionDto} from "./dtos/stadion.dto";
 
 @Injectable()
 export class TickerService {
@@ -34,8 +35,13 @@ export class TickerService {
         }
         return info;
     }
+   public async checkStadion(data: ParsedMessage): Promise<Array<KontextInfoDto>> {
+       const info = [];
+       for (const arena of data.entities.filter(e => e.entity === 'arena')) {
+           const areaUid = arena.option;
 
-    public async checkStadion(data): Promise<Array<KontextInfoDto>> {
-        return [];
-    }
+           info.push(StadionDto.fromArena(await this.repository.findArena(areaUid)));
+       }
+       return info;
+   }
 }

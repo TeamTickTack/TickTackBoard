@@ -1,4 +1,5 @@
 export class Arena {
+    uid: string;
     name: string;
     address: string;
     zip: string;
