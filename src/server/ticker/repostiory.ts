@@ -30,6 +30,17 @@ export class Repository {
     public async getRankings(): Promise<Ranking[]>  {
         return await this.db.k('ranking');
     }
+
+    public async getStadions() {
+        const output = [];
+        const arenas = (await this.db.k('match').select('arena')).map(a => a.arena);
+        for (const arena of arenas) {
+            if (!output.some(a => a.name === arena.name)) {
+                output.push(arena);
+            }
+        }
+        return output;
+    }
 }
 
 //new Repository(new DbService()).findMatch('040A36A7-5E75-49E8-B2D9-0F3790572EA4');
