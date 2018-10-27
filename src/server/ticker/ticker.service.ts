@@ -36,7 +36,7 @@ export class TickerService {
                 if (!foundPlayers.some((u) => u === playerUid)) {
                     foundPlayers.push(playerUid);
                     const dto = PlayerDto.fromPlayer(await this.repository.findPlayer(playerUid));
-                    dto.action = data.intent;
+                    if (data.score >= 0.5) dto.action = data.intent;
                     info.push(dto);
                 }
             }
@@ -61,7 +61,6 @@ export class TickerService {
 
             const ranking = await this.repository.findRanking(clubUid);
             const partie = await this.repository.findPartie(ranking.name);
-            console.log(partie)
             const clubDto = ClubDto.fromRanking(ranking);
             const lastParties = partie.filter(p => {
                 const splittedDate = p.date.split('.');

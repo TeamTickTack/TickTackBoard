@@ -16,15 +16,15 @@
                 <td><fa-icon [icon]="'running'"></fa-icon> Gespielte Matches</td>
                 <td>{{playerInfo.matches}} ({{playerInfo.gespielteMinuten}} min)</td>
             </tr>
-            <tr>
+            <tr [class.markRow]="playerInfo.action == 'goalScored'">
                 <td><fa-icon [icon]="'futbol'"></fa-icon> Tore</td>
                 <td>{{playerInfo.tore}} ({{playerInfo.assists}} Assists)</td>
             </tr>
-            <tr>
+            <tr [class.markRow]="playerInfo.action == 'redCard'">
                 <td><fa-icon class="text-danger" [icon]="'clipboard'"></fa-icon> Karten</td>
                 <td>{{playerInfo.roteKarten}}</td>
             </tr>
-            <tr>
+            <tr [class.markRow]="playerInfo.action == 'yellowCard'">
                 <td><fa-icon class="text-warning" [icon]="'clipboard'"></fa-icon> Karten</td>
                 <td>{{playerInfo.gelbeKarten}}</td>
             </tr>
@@ -41,7 +41,6 @@
                 <td><fa-icon [icon]="'birthday-cake'"></fa-icon> Geburtsdatum</td>
                 <td>{{playerInfo.geburtsdatum}}</td>
             </tr>
-            {{playerInfo.action}}
         </table>
     </div>
 </div>
