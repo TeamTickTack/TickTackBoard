@@ -17,6 +17,10 @@ export class Repository {
         return await this.db.k('player');
     }
 
+    public async getTopScorer(): Promise<Player>  {
+        return await this.db.k('player').orderBy('goals','desc').first();
+    }
+
     public async findMatch(uid: string): Promise<Match>  {
         return await this.db.k('match').first().where({ uid });
     }
@@ -31,11 +35,14 @@ export class Repository {
 
     public async findPartie(name: string): Promise<Partie[]>  {
         return await this.db.k('partie').where('homename', name).orWhere('guestname',name);
-
     }
 
     public async getRankings(): Promise<Ranking[]>  {
         return await this.db.k('ranking');
+    }
+
+    public async getParties(): Promise<Partie[]>  {
+        return await this.db.k('partie');
     }
 
     public async getArenas(): Promise<Arena[]> {

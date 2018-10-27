@@ -47,7 +47,7 @@ export class MessageService {
             this.manager.addNamedEntityText('club', ranking.uid, ['de'], synonyms);
         });
 
-        this.manager.addNamedEntityText('goal', 'Tor', ['de'], ['Tor', 'Goal', 'Punkt']);
+        this.manager.addNamedEntityText('goal', 'Tor', ['de'], ['Tor', 'Goal', 'Punkt', 'Volltreffer']);
         this.manager.addDocument('de', '%player% hat ein %goal% geschossen.', 'goalScored');
         this.manager.addDocument('de', '%player% hat das %goal% getroffen.', 'goalScored');
         this.manager.addDocument('de', '%team% gehen dank einem %goal% von %player% in Führung', 'goalScored');

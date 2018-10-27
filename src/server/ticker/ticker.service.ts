@@ -7,6 +7,8 @@ import {StadionDto} from "./dtos/stadion.dto";
 import {ClubDto} from "./dtos/club.dto";
 import {Ranking} from "./model/ranking";
 import {MatchDto} from "./dtos/match.dto";
+import {GoalDto} from "./dtos/goal.dto";
+import {count} from "rxjs/operators";
 
 
 @Injectable()
@@ -21,6 +23,7 @@ export class TickerService {
             infos.push(...await this.checkPlayer(result));
             infos.push(...await this.checkStadion(result));
             infos.push(...await this.checkClub(result));
+            infos.push(...await this.checkGoal(result));
         }
         return infos;
     }
@@ -61,22 +64,54 @@ export class TickerService {
 
             const ranking = await this.repository.findRanking(clubUid);
             const partie = await this.repository.findPartie(ranking.name);
-            console.log(partie)
             const clubDto = ClubDto.fromRanking(ranking);
             const lastParties = partie.filter(p => {
                 const splittedDate = p.date.split('.');
-                const date = new Date(parseInt(splittedDate[2]),parseInt(splittedDate[1]), parseInt(splittedDate[0]), 0, 0, 0, 0);
-                return  date < new Date()
+                const date = new Date(parseInt(splittedDate[2]), parseInt(splittedDate[1]), parseInt(splittedDate[0]), 0, 0, 0, 0);
+                return date < new Date()
             }).slice(0, 3);
             clubDto.letzteMatch = lastParties.map(partie => MatchDto.fromPartie(partie));
             const nextParties = partie.filter(p => {
                 const splittedDate = p.date.split('.');
-                const date = new Date(parseInt(splittedDate[2]),parseInt(splittedDate[1]), parseInt(splittedDate[0]), 0, 0, 0, 0);
-                return  date > new Date()
+                const date = new Date(parseInt(splittedDate[2]), parseInt(splittedDate[1]), parseInt(splittedDate[0]), 0, 0, 0, 0);
+                return date > new Date()
             });
             clubDto.nachsteMatch = nextParties.map(partie => MatchDto.fromPartie(partie));
             info.push(clubDto);
         }
         return info;
     }
+
+    public async checkGoal(data: ParsedMessage): Promise<Array<KontextInfoDto>> {
+        const info = [];
+        for (const goal of data.entities.filter(e => e.entity === 'goal')) {
+            const clubUid = goal.option;
+
+            const parties = await this.repository.getParties();
+            const topscorer = await this.repository.getTopScorer();
+
+           console.log(topscorer);
+
+            const goalDto = new GoalDto();
+            goalDto.topscorergoals = parseInt(topscorer.goals);
+            goalDto.topscorer = topscorer.last_name;
+            goalDto.heimTore =0;
+            goalDto.gastTore= 0;
+            goalDto.ersteHalzeitTore = 0;
+            goalDto.gesamtTore = 0;
+            goalDto.zweiteHalbzeitTore = 0;
+            for (const partie of parties) {
+                goalDto.heimTore += parseInt(partie.homeTotal);
+                goalDto.gastTore += parseInt(partie.guestTotal);
+                goalDto.ersteHalzeitTore += parseInt(partie.homeHalftime) + parseInt(partie.guestHalftime);
+                goalDto.gesamtTore += parseInt(partie.guestTotal) + parseInt(partie.homeTotal);
+            }
+            goalDto.zweiteHalbzeitTore = goalDto.gesamtTore - goalDto.ersteHalzeitTore;
+
+            info.push(goalDto);
+
+        }
+        return info;
+    }
+
 }
