@@ -19,4 +19,8 @@ export class AppService {
     public getPlayersOfTeam(uid:string): Observable<Array<PlayerDto>> {
         return this.http.get<Array<PlayerDto>>('/api/ticker/team/'+uid+'/players');
     }
+    public getMatches(team1Id:string, team2Id:string): Observable<Array<PlayerDto>> {
+        return this.http.get<Array<PlayerDto>>('/api/ticker/partie/'+team1Id+'/'+team2Id);
+    }
+    
 }

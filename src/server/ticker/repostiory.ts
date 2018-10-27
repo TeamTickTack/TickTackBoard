@@ -6,7 +6,7 @@ import { Ranking } from './model/ranking';
 import { Arena } from './model/arena';
 import { Partie } from './model/partie';
 import { Team } from './model/team';
-import {Referee} from "./model/referee";
+import { Referee } from "./model/referee";
 @Injectable()
 export class Repository {
     constructor(private readonly db: DbService) { }
@@ -19,8 +19,8 @@ export class Repository {
         return await this.db.k('player');
     }
 
-    public async getTopScorer(): Promise<Player>  {
-        return await this.db.k('player').orderBy('goals','desc').first();
+    public async getTopScorer(): Promise<Player> {
+        return await this.db.k('player').orderBy('goals', 'desc').first();
     }
 
     public async getTeams(): Promise<Team[]> {
@@ -35,12 +35,12 @@ export class Repository {
         return await this.db.k('referee');
     }
 
-    public async getTopGelbReferee(): Promise<Referee>  {
-        return await this.db.k('referee').orderBy('yellow_cards','desc').first();
+    public async getTopGelbReferee(): Promise<Referee> {
+        return await this.db.k('referee').orderBy('yellow_cards', 'desc').first();
     }
 
-    public async getTopRotReferee(): Promise<Referee>  {
-        return await this.db.k('referee').orderBy('red_cards','desc').first();
+    public async getTopRotReferee(): Promise<Referee> {
+        return await this.db.k('referee').orderBy('red_cards', 'desc').first();
     }
 
 
@@ -48,23 +48,33 @@ export class Repository {
         return await this.db.k('match').first().where({ uid });
     }
 
-    public async getMatches(): Promise<Player[]> {
+    public async getMatches(): Promise<Match[]> {
         return await this.db.k('match');
     }
 
-    public async findRanking(uid: string): Promise<Ranking>  {
+    public async getMatchesOfTeams(team1, team2) {
+        const matches = await this.getMatches();
+        const matchingMatches = [];
+        matches.forEach(match => {
+            if (match.teams.indexOf(team1) > -1 && match.teams.indexOf(team2) > -1)
+                matchingMatches.push(match);
+        });
+        return matchingMatches;
+    }
+
+    public async findRanking(uid: string): Promise<Ranking> {
         return await this.db.k('ranking').first().where({ uid });
     }
 
-    public async findPartie(name: string): Promise<Partie[]>  {
-        return await this.db.k('partie').where('homename', name).orWhere('guestname',name);
+    public async findPartie(name: string): Promise<Partie[]> {
+        return await this.db.k('partie').where('homename', name).orWhere('guestname', name);
     }
 
     public async getRankings(): Promise<Ranking[]> {
         return await this.db.k('ranking');
     }
 
-    public async getParties(): Promise<Partie[]>  {
+    public async getParties(): Promise<Partie[]> {
         return await this.db.k('partie');
     }
 
