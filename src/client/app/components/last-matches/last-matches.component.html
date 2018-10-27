@@ -1,0 +1,16 @@
+<div class="info-card">
+    <b class="sub-title">Vergange Spiele</b>
+    <table class="lastGames">
+        <tr *ngFor="let game of lastMatches">
+            <td>{{game.datum}}</td>
+            <td class="team">
+                <span>{{game.homeTotal}}</span>
+                {{game.heimteam}}
+            </td>
+            <td class="team">
+                <span>{{game.guestTotal}}</span>
+                {{game.auswaertsteam}}
+            </td>
+        </tr>
+    </table>
+</div>

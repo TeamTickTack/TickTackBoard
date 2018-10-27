@@ -1,4 +1,4 @@
-<div *ngIf="!matchStarted; else matchInProgress">
+<div *ngIf="!matchStarted;" style="left: calc(50% - 20px);margin: auto;overflow: hidden; width: 790px;">
     <div class="teams-group">
         <div class="team">
             <label for="home">Heim</label>
@@ -18,10 +18,3 @@
     </div>
     <button class="btn btn-warning" (click)="startGame()">Spiel starten</button>
 </div>
-<ng-template #matchInProgress>
-    <p>{{homeTeam.name}}</p>
-    <img src='{{homeTeam.image}}'>
-    <a>vs</a>
-    <p>{{guestTeam.name}}</p>
-    <img src='{{guestTeam.image}}'>
-</ng-template>
