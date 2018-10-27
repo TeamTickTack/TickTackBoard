@@ -70,6 +70,7 @@ export class MessageService {
         this.manager.addDocument('de', '%player% trifft die Latte', 'latte');
 
         this.manager.addDocument('de', '%arena%.', 'arena');
+        this.manager.addDocument('de', '%arena% Anpfiff', 'arena');
         this.manager.addDocument('de', '%team%', 'team');
         await this.manager.train();
         this.manager.save(this.filePath);
