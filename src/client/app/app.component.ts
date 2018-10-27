@@ -15,7 +15,7 @@ export class AppComponent {
     public message: string;
     public suggestedText: string;
     public posts: Post[] = [];
-    public tickerInfos: KontextInfoDto[] = [];
+    public tickerInfos: KontextInfoDto[] |any = [];
 
     public homeTeam: TeamDto;
     public guestTeam: TeamDto;

@@ -1,15 +1,15 @@
-import {Injectable} from '@nestjs/common';
-import {Repository} from './repostiory';
-import {MessageService, ParsedMessage} from './message.service';
-import {KontextInfoDto} from './dtos/kontextInfo.dto';
-import {PlayerDto} from './dtos/player.dto';
-import {StadionDto} from "./dtos/stadion.dto";
-import {ClubDto} from "./dtos/club.dto";
-import {Ranking} from "./model/ranking";
-import {MatchDto} from "./dtos/match.dto";
-import {GoalDto} from "./dtos/goal.dto";
-import {count} from "rxjs/operators";
-import {CardDto} from "./dtos/card.dto";
+import { Injectable } from '@nestjs/common';
+import { Repository } from './repostiory';
+import { MessageService, ParsedMessage } from './message.service';
+import { KontextInfoDto } from './dtos/kontextInfo.dto';
+import { PlayerDto } from './dtos/player.dto';
+import { StadionDto } from "./dtos/stadion.dto";
+import { ClubDto } from "./dtos/club.dto";
+import { Ranking } from "./model/ranking";
+import { MatchDto } from "./dtos/match.dto";
+import { GoalDto } from "./dtos/goal.dto";
+import { count } from "rxjs/operators";
+import { CardDto } from "./dtos/card.dto";
 
 
 @Injectable()
@@ -18,6 +18,11 @@ export class TickerService {
     }
 
     public async proccessMessage(message: string): Promise<Array<KontextInfoDto>> {
+        if (message.toLowerCase().includes("wurst")) {
+            return {
+                wurst: true,
+            } as any;
+        }
         const result: ParsedMessage = await this.messageService.parse(message);
         const infos = [];
         if (result) {
