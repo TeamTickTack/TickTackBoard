@@ -48,6 +48,9 @@ export class MessageService {
         });
 
         this.manager.addNamedEntityText('goal', 'Tor', ['de'], ['Tor', 'Goal', 'Punkt']);
+
+        this.manager.addNamedEntityText('penalty', 'penalty', ['de'], ['Elfmeter', 'Strafschuss','Penalty']);
+
         this.manager.addDocument('de', '%player% schiesst ein Tor', 'goalScored');
         this.manager.addDocument('de', '%player% hat ein %goal% geschossen.', 'goalScored');
         this.manager.addDocument('de', '%player% hat das %goal% getroffen.', 'goalScored');

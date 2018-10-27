@@ -1,4 +1,3 @@
-import {TopscorerDto} from './topscorer.dto';
 import { KontextInfoDto } from './kontextInfo.dto';
 
 export class GoalDto extends KontextInfoDto {

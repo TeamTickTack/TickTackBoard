@@ -5,6 +5,7 @@ import { Match } from './model/match';
 import { Ranking } from './model/ranking';
 import { Arena } from './model/arena';
 import { Partie } from './model/partie';
+import {Referee} from "./model/referee";
 @Injectable()
 export class Repository {
     constructor(private readonly db: DbService) { }
@@ -21,11 +22,23 @@ export class Repository {
         return await this.db.k('player').orderBy('goals','desc').first();
     }
 
-
     public async getPlayersOfTeam(teamUid: string): Promise<Player[]> {
         return this.getPlayers();
         // return await this.db.k('player').where(team == teamuid);
     }
+
+    public async getReferees(): Promise<Referee[]> {
+        return await this.db.k('referee');
+    }
+
+    public async getTopGelbReferee(): Promise<Referee>  {
+        return await this.db.k('referee').orderBy('yellow_cards','desc').first();
+    }
+
+    public async getTopRotReferee(): Promise<Referee>  {
+        return await this.db.k('referee').orderBy('red_cards','desc').first();
+    }
+
 
     public async findMatch(uid: string): Promise<Match> {
         return await this.db.k('match').first().where({ uid });
@@ -53,10 +66,6 @@ export class Repository {
 
     public async getArenas(): Promise<Arena[]> {
         return await this.db.k('arena');
-    }
-
-    public async findRanking(uid: string): Promise<Ranking> {
-        return await this.db.k('ranking').first().where({ uid });
     }
 
     public async findArena(uid: string): Promise<Arena> {

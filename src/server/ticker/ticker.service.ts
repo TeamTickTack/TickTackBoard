@@ -9,6 +9,7 @@ import {Ranking} from "./model/ranking";
 import {MatchDto} from "./dtos/match.dto";
 import {GoalDto} from "./dtos/goal.dto";
 import {count} from "rxjs/operators";
+import {CardDto} from "./dtos/card.dto";
 
 
 @Injectable()
@@ -23,7 +24,6 @@ export class TickerService {
             infos.push(...await this.checkPlayer(result));
             infos.push(...await this.checkStadion(result));
             infos.push(...await this.checkClub(result));
-            infos.push(...await this.checkGoal(result));
         }
         return infos;
     }
@@ -39,7 +39,15 @@ export class TickerService {
                 if (!foundPlayers.some((u) => u === playerUid)) {
                     foundPlayers.push(playerUid);
                     const dto = PlayerDto.fromPlayer(await this.repository.findPlayer(playerUid));
-                    if (data.score >= 0.5) dto.action = data.intent;
+                    if (data.score >= 0.5) {
+                        dto.action = data.intent;
+                        if (data.intent == "redCard" || data.intent == "yellowCard") {
+                            info.push(this.createCardInfo());
+                        }
+                        if (data.intent == "goalScored") {
+                            info.push(this.createGoalInfo());
+                        }
+                    }
                     info.push(dto);
                 }
             }
@@ -82,36 +90,47 @@ export class TickerService {
         return info;
     }
 
-    public async checkGoal(data: ParsedMessage): Promise<Array<KontextInfoDto>> {
-        const info = [];
-        for (const goal of data.entities.filter(e => e.entity === 'goal')) {
-            const clubUid = goal.option;
+    public async createGoalInfo(): Promise<GoalDto> {
 
-            const parties = await this.repository.getParties();
-            const topscorer = await this.repository.getTopScorer();
+        const parties = await this.repository.getParties();
+        const topscorer = await this.repository.getTopScorer();
 
-           console.log(topscorer);
-
-            const goalDto = new GoalDto();
-            goalDto.topscorergoals = parseInt(topscorer.goals);
-            goalDto.topscorer = topscorer.last_name;
-            goalDto.heimTore =0;
-            goalDto.gastTore= 0;
-            goalDto.ersteHalzeitTore = 0;
-            goalDto.gesamtTore = 0;
-            goalDto.zweiteHalbzeitTore = 0;
-            for (const partie of parties) {
-                goalDto.heimTore += parseInt(partie.homeTotal);
-                goalDto.gastTore += parseInt(partie.guestTotal);
-                goalDto.ersteHalzeitTore += parseInt(partie.homeHalftime) + parseInt(partie.guestHalftime);
-                goalDto.gesamtTore += parseInt(partie.guestTotal) + parseInt(partie.homeTotal);
-            }
-            goalDto.zweiteHalbzeitTore = goalDto.gesamtTore - goalDto.ersteHalzeitTore;
-
-            info.push(goalDto);
-
+        const goalDto = new GoalDto();
+        goalDto.topscorergoals = parseInt(topscorer.goals);
+        goalDto.topscorer = topscorer.last_name;
+        goalDto.heimTore = 0;
+        goalDto.gastTore = 0;
+        goalDto.ersteHalzeitTore = 0;
+        goalDto.gesamtTore = 0;
+        goalDto.zweiteHalbzeitTore = 0;
+        for (const partie of parties) {
+            goalDto.heimTore += parseInt(partie.homeTotal);
+            goalDto.gastTore += parseInt(partie.guestTotal);
+            goalDto.ersteHalzeitTore += parseInt(partie.homeHalftime) + parseInt(partie.guestHalftime);
+            goalDto.gesamtTore += parseInt(partie.guestTotal) + parseInt(partie.homeTotal);
         }
-        return info;
+        goalDto.zweiteHalbzeitTore = goalDto.gesamtTore - goalDto.ersteHalzeitTore;
+
+        return goalDto;
+    }
+
+    public async createCardInfo(): Promise<CardDto> {
+        const referees = await this.repository.getReferees();
+        const topgelbreferee = await this.repository.getTopGelbReferee();
+        const toprotreferee = await this.repository.getTopRotReferee();
+        console.log(referees);
+        console.log(toprotreferee);
+        const cardDto = new CardDto();
+        cardDto.schiedsrichterMitMeistenGelbeKarten = topgelbreferee.first_name + ' ' + topgelbreferee.last_name;
+        cardDto.schiedsrichterMitMeistenRoteKarten = toprotreferee.first_name + ' ' + toprotreferee.last_name;
+        cardDto.anzahlGelbeKarten = 0;
+        cardDto.anzahlRoteKarten = 0;
+        for (const referee of referees) {
+            cardDto.anzahlGelbeKarten += referee.yellow_cards;
+            cardDto.anzahlRoteKarten += referee.red_cards;
+        }
+
+        return cardDto;
     }
 
 }
