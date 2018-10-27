@@ -26,8 +26,8 @@ export class TickerController {
     }
 
     @Get('/team/:id/players')
-    public async getPlayersOfTeam(@Param() id: string): Promise<Array<PlayerDto>> {
-        return this.dataService.getPlayersOfTeam(id);
+    public async getPlayersOfTeam(@Param() id: any): Promise<Array<PlayerDto>> {
+        return this.dataService.getPlayersOfTeam(id.id);
 
     }
 }

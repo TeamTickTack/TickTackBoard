@@ -8,11 +8,8 @@ export class DataService {
     constructor(private readonly repository: Repository) {
 
     }
-    public getTeams(): Promise<Array<TeamDto>> {
-        return Promise.resolve([
-            { name: "GCZ", uid: "123" },
-            { name: 'BscYB', uid: "567" }
-        ]);
+    public async getTeams(): Promise<Array<TeamDto>> {
+        return (await this.repository.getTeams()).map(TeamDto.FromTeam);
     }
     public async getPlayersOfTeam(uid: string): Promise<PlayerDto[]> {
         return (await this.repository.getPlayersOfTeam(uid)).map(PlayerDto.fromPlayer);

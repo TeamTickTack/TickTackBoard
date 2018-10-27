@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AppService } from './app.service';
 
 import { KontextInfoDto } from '../../server/ticker/dtos/kontextInfo.dto';
+import { GameInfo } from './components/match/match.component';
 
 @Component({
     selector: 'app-root',
@@ -72,8 +73,8 @@ export class AppComponent {
         return parts[parts.length - 1];
     }
 
-    public gameStarted(event) {
-        this.updatePlayerInfo(event.homeTeamUid,event.guestTeamUid);
+    public gameStarted(event: GameInfo) {
+        this.updatePlayerInfo(event.homeTeam.uid, event.guestTeam.uid);
     }
 
     public applyAutocompte(event: Event) {

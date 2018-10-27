@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { AppService } from '../../app.service';
+import { TeamDto } from '../../../../server/ticker/dtos/team.dto';
 
 @Component({
     selector: 'app-match',
@@ -18,18 +19,18 @@ export class MatchComponent {
         )
     }
 
-    public teams;
-    public homeTeam;
-    public guestTeam;
+    public teams: Array<TeamDto>;
+    public homeTeam: TeamDto;
+    public guestTeam: TeamDto;
 
     public startGame() {
-        this.gameStarted.emit({ homeTeamUid: this.homeTeam,guestTeamUid: this.guestTeam });
+        this.gameStarted.emit({ homeTeam: this.homeTeam, guestTeam: this.guestTeam });
     }
 
 
 }
 
 export interface GameInfo {
-    homeTeamUid: string;
-    guestTeamUid: string;
+    homeTeam: TeamDto;
+    guestTeam: TeamDto;
 }

@@ -5,6 +5,7 @@ import { Match } from './model/match';
 import { Ranking } from './model/ranking';
 import { Arena } from './model/arena';
 import { Partie } from './model/partie';
+import { Team } from './model/team';
 import {Referee} from "./model/referee";
 @Injectable()
 export class Repository {
@@ -22,9 +23,12 @@ export class Repository {
         return await this.db.k('player').orderBy('goals','desc').first();
     }
 
+    public async getTeams(): Promise<Team[]> {
+        return await this.db.k('alle_spieler').groupBy('team_name', 'team_id').select('team_name', 'team_id');
+    }
+
     public async getPlayersOfTeam(teamUid: string): Promise<Player[]> {
-        return this.getPlayers();
-        // return await this.db.k('player').where(team == teamuid);
+        return await this.db.k('alle_spieler').where('team_id', teamUid);
     }
 
     public async getReferees(): Promise<Referee[]> {
@@ -72,6 +76,3 @@ export class Repository {
         return await this.db.k('arena').first().where({ uid });
     }
 }
-
-
-//new Repository(new DbService()).findMatch('040A36A7-5E75-49E8-B2D9-0F3790572EA4');
