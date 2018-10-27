@@ -3,6 +3,8 @@ import { AppService } from './app.service';
 
 import { KontextInfoDto } from '../../server/ticker/dtos/kontextInfo.dto';
 import { GameInfo } from './components/match/match.component';
+import { TeamDto } from '../../server/ticker/dtos/team.dto';
+import { MatchDto } from '../../server/ticker/dtos/match.dto';
 
 @Component({
     selector: 'app-root',
@@ -15,7 +17,13 @@ export class AppComponent {
     public posts: Post[] = [];
     public tickerInfos: KontextInfoDto[] = [];
 
+    public homeTeam: TeamDto;
+    public guestTeam: TeamDto;
+
+    public lastMatches: MatchDto[] = [];
+
     private timeoutId = 0;
+    public started = false;
 
     constructor(private appService: AppService) {
     }
@@ -23,9 +31,11 @@ export class AppComponent {
     public addPost() {
         this.posts.unshift(new Post(this.message));
         this.message = "";
+        this.tickerInfos = [];
     }
 
     public processMessage() {
+        this.lastMatches = [];
         // stop previous timeouts
         this.autocomplete(this.message);
         clearTimeout(this.timeoutId)
@@ -35,7 +45,6 @@ export class AppComponent {
             });
         }, 100);
     }
-
 
     private playerInfo = [];
 
@@ -74,7 +83,11 @@ export class AppComponent {
     }
 
     public gameStarted(event: GameInfo) {
+        this.appService.getMatches(event.homeTeam.uid, event.guestTeam.uid).subscribe(console.log)
         this.updatePlayerInfo(event.homeTeam.uid, event.guestTeam.uid);
+        this.homeTeam = event.homeTeam;
+        this.guestTeam = event.guestTeam;
+        this.started = true;
     }
 
     public applyAutocompte(event: Event) {

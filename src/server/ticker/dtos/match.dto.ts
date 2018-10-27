@@ -9,6 +9,7 @@ export class MatchDto extends KontextInfoDto {
         dto.heimteam = partie.homeName;
         dto.guestTotal = partie.guestTotal;
         dto.homeTotal = partie.homeTotal;
+        console.log(dto);
         return dto;
     }
     datum: string;

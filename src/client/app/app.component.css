@@ -7,6 +7,28 @@
     overflow: hidden;
 }
 
+img {
+    width: 50px;
+}
+.teams {
+    float: right;
+}
+.team-vs {
+    float: left;
+    text-align: center;
+    width: 130px;
+}
+
+.team-vs {
+    font-size: 14px;
+}
+
+.vs {
+    font-size: 20px;
+    float: left;
+    margin-top: 56px;
+}
+
 .ticker-col {
 
 }

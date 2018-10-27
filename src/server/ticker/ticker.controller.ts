@@ -6,6 +6,7 @@ import { TickerService } from './ticker.service';
 import { TeamDto } from './dtos/team.dto';
 import { DataService } from './data.service';
 import { PlayerDto } from './dtos/player.dto';
+import { MatchDto } from './dtos/match.dto';
 
 @Controller('/api/ticker')
 export class TickerController {
@@ -30,4 +31,11 @@ export class TickerController {
         return this.dataService.getPlayersOfTeam(id.id);
 
     }
+
+    @Get('/partie/:team1/:team2')
+    public async getMatchOfTeams(@Param() param: any): Promise<Array<MatchDto>> {
+        return this.dataService.getMatches(param.team1, param.team2);
+    }
+
+
 }

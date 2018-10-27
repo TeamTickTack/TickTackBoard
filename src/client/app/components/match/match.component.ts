@@ -14,7 +14,7 @@ export class MatchComponent {
         this.appService.getTeams().subscribe(t => {
             this.teams = t;
             this.homeTeam = this.teams[0];
-            this.guestTeam = this.teams[1];
+            this.guestTeam = this.teams[2];
         }
         )
     }
