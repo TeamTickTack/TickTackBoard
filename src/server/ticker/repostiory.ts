@@ -4,6 +4,7 @@ import { Player } from './model/player';
 import { Match } from './model/match';
 import { Ranking } from './model/ranking';
 import { Arena } from './model/arena';
+import {Partie} from "./model/partie";
 @Injectable()
 export class Repository {
     constructor(private readonly db: DbService) { }
@@ -29,16 +30,18 @@ export class Repository {
     return await this.db.k('match');
 }
 
-    public async findRanking(uid: string): Promise < Ranking > {
-    return await this.db.k('ranking').first().where({ uid });
-}
+    public async findPartie(name: string): Promise<Partie[]>  {
+        return await this.db.k('partie').where('homename', name).orWhere('guestname',name);
 
-    public async getRankings(): Promise < Ranking[] > {
-    return await this.db.k('ranking');
-}
+    }
 
-    public async getArenas(): Promise < Arena[] > {
-    return await this.db.k('arena');
+    public async getRankings(): Promise<Ranking[]>  {
+        return await this.db.k('ranking');
+    }
+
+    public async getArenas(): Promise<Arena[]> {
+        return await this.db.k('arena');
+    }
 
 }
 

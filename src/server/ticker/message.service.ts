@@ -5,6 +5,7 @@ import { Player } from './model/player';
 import { existsSync } from 'fs';
 import { Arena } from './model/arena';
 import { DbService } from '../../server/db/db.service';
+import {Ranking} from "./model/ranking";
 const { NlpManager } = require('node-nlp');
 
 @Injectable()
@@ -37,6 +38,13 @@ export class MessageService {
             synonyms.push(...arena.name.split(', '));
             synonyms.push(arena.name);
             this.manager.addNamedEntityText('arena', arena.uid, ['de'], synonyms);
+        });
+
+        const rankings: Array<Ranking> = await this.repositroy.getRankings();
+        rankings.forEach(ranking => {
+            const synonyms = [ranking.short_name];
+            synonyms.push(ranking.name);
+            this.manager.addNamedEntityText('club', ranking.uid, ['de'], synonyms);
         });
 
         this.manager.addNamedEntityText('goal', 'Tor', ['de'], ['Tor', 'Goal', 'Punkt']);
