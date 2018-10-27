@@ -1,0 +1,20 @@
+<div class="info-card">
+    <span class="card-type">SAISON STATISTIK</span>
+    <div>
+        <table style="margin-top: 12px;">
+            <tr>
+                <td><fa-icon class="text-warning" [icon]="'clipboard'"></fa-icon> Anzahl Gesamt</td>
+                <td>{{cardInfo.anzahlGelbeKarten}}</td>
+                <td><fa-icon class="text-danger" [icon]="'clipboard'"></fa-icon> Anzahl Gesamt</td>
+                <td>{{cardInfo.anzahlRoteKarten}}</td>
+            </tr>
+            <hr>
+            <tr>
+                <td><fa-icon [icon]="'hand-point-right'"></fa-icon> Meiste gelbe Karten von</td>
+                <td>{{cardInfo.schiedsrichterMitMeistenGelbeKarten}}</td>
+                <td><fa-icon [icon]="'hand-point-right'"></fa-icon> Meiste rote Karten von</td>
+                <td>{{cardInfo.schiedsrichterMitMeistenRoteKarten}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

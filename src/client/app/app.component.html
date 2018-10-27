@@ -48,6 +48,12 @@
                     <app-arena-card [arenaInfo]="info" *ngIf="info.type == 'arena'"></app-arena-card>
                     <app-club-card [clubInfo]="info" *ngIf="info.type == 'club'"></app-club-card>
                 </div>
+            <div *ngFor="let info of tickerInfos">
+                <app-player-card [playerInfo]="info" *ngIf="info.type == 'player'"></app-player-card>
+                <app-arena-card [arenaInfo]="info" *ngIf="info.type == 'arena'"></app-arena-card>
+                <app-club-card [clubInfo]="info" *ngIf="info.type == 'club'"></app-club-card>
+                <app-goal-card [goalInfo]="info" *ngIf="info.type == 'goal'"></app-goal-card>
+                <app-card-card [cardInfo]="info" *ngIf="info.type == 'card'"></app-card-card>
             </div>
         </div>
     </div>

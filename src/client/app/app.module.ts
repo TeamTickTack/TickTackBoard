@@ -13,8 +13,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatchComponent } from './components/match/match.component';
 import { ArenaComponent } from './components/info-cards/arena/arena.component';
 import { ClubComponent } from './components/info-cards/club/club.component';
+import {GoalComponent} from "./components/info-cards/goal/goal.component";
+import {CardComponent} from "./components/info-cards/card/card.component";
 import { LastMatchesComponent } from './components/last-matches/last-matches.component';
- 
+
 library.add(fas, far);
 
 @NgModule({
@@ -24,7 +26,9 @@ library.add(fas, far);
     MatchComponent,
     ArenaComponent,
     ClubComponent,
-    LastMatchesComponent
+      LastMatchesComponent,
+      GoalComponent,
+      CardComponent
   ],
   imports: [
     CommonModule,
@@ -36,4 +40,5 @@ library.add(fas, far);
   providers: [AppService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -5,6 +5,7 @@ import { TickerMessageDto } from '../../server/ticker/dtos/tickerMessage.dto';
 import { TeamDto } from '../../server/ticker/dtos/team.dto';
 import { Observable } from "rxjs";
 import { PlayerDto } from '../../server/ticker/dtos/player.dto';
+import { MatchDto } from "../../server/ticker/dtos/match.dto";
 
 @Injectable()
 export class AppService {
@@ -19,8 +20,8 @@ export class AppService {
     public getPlayersOfTeam(uid:string): Observable<Array<PlayerDto>> {
         return this.http.get<Array<PlayerDto>>('/api/ticker/team/'+uid+'/players');
     }
-    public getMatches(team1Id:string, team2Id:string): Observable<Array<PlayerDto>> {
-        return this.http.get<Array<PlayerDto>>('/api/ticker/partie/'+team1Id+'/'+team2Id);
+    public getMatches(team1Id:string, team2Id:string): Observable<Array<MatchDto>> {
+        return this.http.get<Array<MatchDto>>('/api/ticker/partie/'+team1Id+'/'+team2Id);
     }
     
 }

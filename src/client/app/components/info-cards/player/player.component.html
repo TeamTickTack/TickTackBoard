@@ -1,7 +1,9 @@
 <div class="info-card">
     <span class="card-type">PLAYER</span>
     <div style="float:left;width: 150px;">
-        <img style="width: 150px;" src="https://ticktack.blob.core.windows.net/ybpictures/{{playerInfo.firstName}}_{{playerInfo.lastName}}.png"> 
+        <div style="height: 150px;background-size: cover;margin-bottom: 12px;" [ngStyle]="{'background-image': 'url(' + 'https://ticktack.blob.core.windows.net/ybpictures/' + playerInfo.firstName + '_' + playerInfo.lastName + '.png' + ')'}">
+             
+        </div>
         <span class="font-weight-light" style="font-size: 31px;display: block;text-align: center;">{{playerInfo.nummer}}</span>
     </div>
     <div style="float:left;padding-left: 25px;">
