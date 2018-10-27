@@ -24,7 +24,7 @@ export class Repository {
     }
 
     public async getTeams(): Promise<Team[]> {
-        return await this.db.k('alle_spieler').groupBy('team_name', 'team_id').select('team_name', 'team_id');
+        return await this.db.k('team').select();
     }
 
     public async getPlayersOfTeam(teamUid: string): Promise<Player[]> {

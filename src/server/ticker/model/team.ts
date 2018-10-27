@@ -1,4 +1,6 @@
 export class Team {
-    team_id: string;
-    team_name: string;
+    name: string;
+    short_name: string;
+    id: number;
+    image: string;
 }

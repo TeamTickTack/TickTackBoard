@@ -1,18 +1,27 @@
-<div class="teams-group">
-    <div class="team">
-        <label for="home">Heim</label>
-        <select class="form-control" id="home" [(ngModel)]="homeTeam" required>
-            <option *ngFor="let team of teams" [ngValue]="team">{{team.name}}</option>
-        </select>
+<div *ngIf="!matchStarted; else matchInProgress">
+    <div class="teams-group">
+        <div class="team">
+            <label for="home">Heim</label>
+            <select class="form-control" id="home" [(ngModel)]="homeTeam" required>
+                <option *ngFor="let team of teams" [ngValue]="team">{{team.name}}</option>
+            </select>
+        </div>
+        <div class="vs">
+            <span class="font-weight-light" style="font-size: 20px;">vs.</span>
+        </div>
+        <div class="team">
+            <label for="guets">Gast</label>
+            <select class="form-control" id="guest" [(ngModel)]="guestTeam" required>
+                <option *ngFor="let team of teams" [ngValue]="team">{{team.name}}</option>
+            </select>
+        </div>
     </div>
-    <div class="vs">
-        <span class="font-weight-light" style="font-size: 20px;">vs.</span>
-    </div>
-    <div class="team">
-        <label for="guets">Gast</label>
-        <select class="form-control" id="guest" [(ngModel)]="guestTeam" required>
-            <option *ngFor="let team of teams" [ngValue]="team">{{team.name}}</option>
-        </select>
-    </div>
+    <button class="btn btn-warning" (click)="startGame()">Spiel starten</button>
 </div>
-<button class="btn btn-warning" (click)="startGame()">Spiel starten</button>
+<ng-template #matchInProgress>
+    <p>{{homeTeam.name}}</p>
+    <img src='{{homeTeam.image}}'>
+    <a>vs</a>
+    <p>{{guestTeam.name}}</p>
+    <img src='{{guestTeam.image}}'>
+</ng-template>

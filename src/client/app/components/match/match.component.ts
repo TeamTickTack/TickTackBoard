@@ -22,9 +22,10 @@ export class MatchComponent {
     public teams: Array<TeamDto>;
     public homeTeam: TeamDto;
     public guestTeam: TeamDto;
-
+    public matchStarted: boolean = false;
     public startGame() {
         this.gameStarted.emit({ homeTeam: this.homeTeam, guestTeam: this.guestTeam });
+        this.matchStarted = true;
     }
 
 
