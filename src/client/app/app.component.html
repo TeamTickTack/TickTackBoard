@@ -38,22 +38,38 @@
         <div class="col-md-6 info-col">
             <span class="col-title font-weight-bold">INFOS</span>
             <app-last-matches *ngIf="lastMatches.length > 0" [lastMatches]="lastMatches"></app-last-matches>
-            <div *ngIf="tickerInfos.wurst">
-                <img src="https://footballmarketingdottv.files.wordpress.com/2014/09/photo-2.jpg">
-            <h1>Bei YB geht es stets auch um die Wurst. Diese wird seit dem Sommer 18 nach einem neuen Rezept zubereitet -- neu von der Migros statt von Coop. Sie spritzt wie eh und je.</h1>
-            </div>
             <div *ngIf="!tickerInfos.wurst">
                 <div *ngFor="let info of tickerInfos">
                     <app-player-card [playerInfo]="info" *ngIf="info.type == 'player'"></app-player-card>
                     <app-arena-card [arenaInfo]="info" *ngIf="info.type == 'arena'"></app-arena-card>
                     <app-club-card [clubInfo]="info" *ngIf="info.type == 'club'"></app-club-card>
+                    <app-goal-card [goalInfo]="info" *ngIf="info.type == 'goal'"></app-goal-card>
+                    <app-card-card [cardInfo]="info" *ngIf="info.type == 'card'"></app-card-card>
                 </div>
-            <div *ngFor="let info of tickerInfos">
-                <app-player-card [playerInfo]="info" *ngIf="info.type == 'player'"></app-player-card>
-                <app-arena-card [arenaInfo]="info" *ngIf="info.type == 'arena'"></app-arena-card>
-                <app-club-card [clubInfo]="info" *ngIf="info.type == 'club'"></app-club-card>
-                <app-goal-card [goalInfo]="info" *ngIf="info.type == 'goal'"></app-goal-card>
-                <app-card-card [cardInfo]="info" *ngIf="info.type == 'card'"></app-card-card>
+            </div>
+            <div *ngIf="tickerInfos.wurst">
+                <div class="picture-area" style="height: 310px;" [ngStyle]="{'background-image': 'linear-gradient(rgba(0, 0, 0, 0.49), transparent), url(https://footballmarketingdottv.files.wordpress.com/2014/09/photo-2.jpg)'}">
+                    <span class="card-type" style="color: white;">DELIKATESSE</span>
+                    <span class="name" style="font-size: 24px;">YB-Wurst</span>
+                </div>
+                <div class="info-card" style="margin-top: 0px">
+                    <div>
+                        <table style="margin-top: 12px; width: 100%;">
+                            <tr>
+                                <td><fa-icon [icon]="'industry'"></fa-icon> Produzent</td>
+                                <td>Migros (seit 2018)</td>
+                            </tr>
+                            <tr>
+                                <td><fa-icon [icon]="'cubes'"></fa-icon> Beilagen</td>
+                                <td>Senf & Brot</td>
+                            </tr>
+                            <tr>
+                                <td><fa-icon [icon]="'utensils'"></fa-icon> Geschmack</td>
+                                <td>Unvergesslich</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
