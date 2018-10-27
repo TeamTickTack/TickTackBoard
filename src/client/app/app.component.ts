@@ -83,7 +83,9 @@ export class AppComponent {
     }
 
     public gameStarted(event: GameInfo) {
-        this.appService.getMatches(event.homeTeam.uid, event.guestTeam.uid).subscribe(console.log)
+        this.appService.getMatches(event.homeTeam.uid, event.guestTeam.uid).subscribe(data => {
+            this.lastMatches = data;
+        })
         this.updatePlayerInfo(event.homeTeam.uid, event.guestTeam.uid);
         this.homeTeam = event.homeTeam;
         this.guestTeam = event.guestTeam;
