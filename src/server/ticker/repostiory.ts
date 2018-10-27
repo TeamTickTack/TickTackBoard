@@ -48,15 +48,15 @@ export class Repository {
         return await this.db.k('match').first().where({ uid });
     }
 
-    public async getMatches(): Promise<Match[]> {
-        return await this.db.k('match');
+    public async getMatches(): Promise<Partie[]> {
+        return await this.db.k('partie');
     }
 
     public async getMatchesOfTeams(team1, team2) {
         const matches = await this.getMatches();
         const matchingMatches = [];
         matches.forEach(match => {
-            if (match.teams.indexOf(team1) > -1 && match.teams.indexOf(team2) > -1)
+            if (match.homeID == team1 && match.guestID == team2 || match.homeID == team2 && match.guestID == team1)
                 matchingMatches.push(match);
         });
         return matchingMatches;
