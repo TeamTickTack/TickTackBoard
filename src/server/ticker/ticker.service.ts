@@ -39,7 +39,7 @@ export class TickerService {
                 if (!foundPlayers.some((u) => u === playerUid)) {
                     foundPlayers.push(playerUid);
                     const dto = PlayerDto.fromPlayer(await this.repository.findPlayer(playerUid));
-                    dto.action = data.intent;
+                    if (data.score >= 0.5) dto.action = data.intent;
                     info.push(dto);
                 }
             }

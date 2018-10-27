@@ -47,7 +47,8 @@ export class MessageService {
             this.manager.addNamedEntityText('club', ranking.uid, ['de'], synonyms);
         });
 
-        this.manager.addNamedEntityText('goal', 'Tor', ['de'], ['Tor', 'Goal', 'Punkt', 'Volltreffer']);
+        this.manager.addNamedEntityText('goal', 'Tor', ['de'], ['Tor', 'Goal', 'Punkt']);
+        this.manager.addDocument('de', '%player% schiesst ein Tor', 'goalScored');
         this.manager.addDocument('de', '%player% hat ein %goal% geschossen.', 'goalScored');
         this.manager.addDocument('de', '%player% hat das %goal% getroffen.', 'goalScored');
         this.manager.addDocument('de', '%team% gehen dank einem %goal% von %player% in Führung', 'goalScored');
@@ -63,6 +64,8 @@ export class MessageService {
         this.manager.addDocument('de', '%player% Gelbe Karte', 'yellowCard');
         this.manager.addDocument('de', '%player% trifft', 'goalScored');
         this.manager.addDocument('de', '%player% trifft die Latte', 'latte');
+
+        this.manager.addDocument('de', '%arena%.', 'arena');
         await this.manager.train();
         this.manager.save(this.filePath);
     }

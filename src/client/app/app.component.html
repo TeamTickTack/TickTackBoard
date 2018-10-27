@@ -1,8 +1,8 @@
 <div class="container-fluid body-content">
     <div class="header">
-        <h1 class="font-weight-light">TickTack</h1>
+        <h1 style="float: left;margin-top: 20px;" class="font-weight-light">TickTack</h1>
+        <app-match style="float: right;" (gameStarted)="gameStarted($event)" ></app-match> 
     </div>
-    <!-- <app-match ></app-match>  uncomment to show match stuff-->
     <div class="row">
         <div class="col-md-6 ticker-col">
             <div class="ticker-compose">
