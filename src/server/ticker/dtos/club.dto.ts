@@ -7,6 +7,8 @@ export class ClubDto extends KontextInfoDto {
     static fromRanking(ranking: Ranking): ClubDto {
         const dto = new ClubDto();
         dto.type = 'club';
+        dto.name = ranking.name;
+        dto.shortName = ranking.short_name;
         dto.rank = ranking.rank;
         dto.spectators_average = ranking.spectators_average;
         dto.wins = ranking.wins;
@@ -14,7 +16,8 @@ export class ClubDto extends KontextInfoDto {
         dto.points = ranking.points;
         return dto;
     }
-
+    shortName: string;
+    name: string;
     rank: string;
     spectators_average: string;
     wins: string;

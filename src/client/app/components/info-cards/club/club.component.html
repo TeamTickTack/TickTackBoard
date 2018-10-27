@@ -1,0 +1,46 @@
+<div class="info-card">
+    <span class="card-type">CLUB</span>
+    <div>
+        <span class="name">{{clubInfo.name}} </span> <span class="font-weight-light"> / {{clubInfo.shortName}}
+        </span>
+        <table style="margin-top: 12px; width: 100%;">
+            <tr>
+                <td><fa-icon [icon]="'trophy'"></fa-icon> Rank</td>
+                <td>#{{clubInfo.rank}}</td>
+            </tr>
+            <tr>
+                <td><fa-icon [icon]="'cubes'"></fa-icon> Punkte</td>
+                <td>{{clubInfo.points}}</td>
+            </tr>
+            <tr>
+                <td><fa-icon [icon]="'arrow-up'"></fa-icon> Gewonnene Spiele </td>
+                <td>{{clubInfo.wins}}</td>
+            </tr>
+            <tr>
+                <td><fa-icon [icon]="'arrow-down'"></fa-icon> Verlorene Spiele </td>
+                <td>{{clubInfo.loss}}</td>
+            </tr>
+            <tr>
+                <td><fa-icon [icon]="'users'"></fa-icon> Fans </td>
+                <td>{{clubInfo.spectators_average}}</td>
+            </tr>
+        </table>
+        <b class="sub-title">Nächste Spiele</b>
+        <i>Keine kommenden Spiele</i>
+
+        <b class="sub-title">Vergange Spiele</b>
+        <table class="lastGames">
+            <tr *ngFor="let game of clubInfo.letzteMatch">
+                <td>{{game.datum}}</td>
+                <td class="team">
+                    <span>{{game.homeTotal}}</span>
+                    {{game.heimteam}}
+                </td>
+                <td class="team">
+                    <span>{{game.guestTotal}}</span>
+                    {{game.auswaertsteam}}
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

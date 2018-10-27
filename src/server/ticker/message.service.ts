@@ -52,6 +52,7 @@ export class MessageService {
         this.manager.addDocument('de', '%player% hat ein %goal% geschossen.', 'goalScored');
         this.manager.addDocument('de', '%player% hat das %goal% getroffen.', 'goalScored');
         this.manager.addDocument('de', '%team% gehen dank einem %goal% von %player% in Führung', 'goalScored');
+        this.manager.addDocument('de', 'heute spielt %team%', 'team');
         this.manager.addDocument('de', '%player% trifft zum Ausgleich', 'goalScored');
         this.manager.addDocument('de', '%player% trifft die Latte', 'latte');
         this.manager.addDocument('de', 'Ein Foul von %player%', 'foul');
@@ -66,6 +67,7 @@ export class MessageService {
         this.manager.addDocument('de', '%player% trifft die Latte', 'latte');
 
         this.manager.addDocument('de', '%arena%.', 'arena');
+        this.manager.addDocument('de', '%team%', 'team');
         await this.manager.train();
         this.manager.save(this.filePath);
     }

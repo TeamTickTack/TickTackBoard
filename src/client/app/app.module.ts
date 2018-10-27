@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http'; 
 import { MatchComponent } from './components/match/match.component';
 import { ArenaComponent } from './components/info-cards/arena/arena.component';
+import { ClubComponent } from './components/info-cards/club/club.component';
  
 library.add(fas, far);
 
@@ -20,7 +21,8 @@ library.add(fas, far);
     AppComponent,
     PlayerComponent,
     MatchComponent,
-    ArenaComponent
+    ArenaComponent,
+    ClubComponent
   ],
   imports: [
     CommonModule,
