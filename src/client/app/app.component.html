@@ -1,9 +1,19 @@
 <div class="container-fluid body-content">
     <div class="header">
         <h1 style="float: left;margin-top: 20px;" class="font-weight-light">TickTack</h1>
-        <app-match style="float: right;" (gameStarted)="gameStarted($event)" ></app-match> 
+        <div *ngIf="homeTeam && guestTeam" class="teams">
+            <div class="team-vs">
+                <p>{{homeTeam.name}}</p>
+                <img src='{{homeTeam.image}}'>
+            </div>
+            <a class="vs">vs</a>
+            <div  class="team-vs">
+                <p>{{guestTeam.name}}</p>
+                <img src='{{guestTeam.image}}'>
+            </div>
+        </div>
     </div>
-    <div class="row">
+    <div class="row" *ngIf="started">
         <div class="col-md-6 ticker-col">
             <div class="ticker-compose">
                 <span class="col-title font-weight-bold">TICKER</span>
@@ -26,11 +36,15 @@
         </div>
         <div class="col-md-6 info-col">
             <span class="col-title font-weight-bold">INFOS</span>
+            <app-last-matches *ngIf="lastMatches.length > 0" [lastMatches]="lastMatches"></app-last-matches>
             <div *ngFor="let info of tickerInfos">
                 <app-player-card [playerInfo]="info" *ngIf="info.type == 'player'"></app-player-card>
                 <app-arena-card [arenaInfo]="info" *ngIf="info.type == 'arena'"></app-arena-card>
                 <app-club-card [clubInfo]="info" *ngIf="info.type == 'club'"></app-club-card>
             </div>
         </div>
+    </div>
+    <div *ngIf="!started" style="margin:auto;">
+        <app-match (gameStarted)="gameStarted($event)" ></app-match> 
     </div>
 </div>
