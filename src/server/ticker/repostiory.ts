@@ -58,10 +58,6 @@ export class Repository {
         return await this.db.k('arena');
     }
 
-    public async findRanking(uid: string): Promise<Ranking> {
-        return await this.db.k('ranking').first().where({ uid });
-    }
-
     public async findArena(uid: string): Promise<Arena> {
         return await this.db.k('arena').first().where({ uid });
     }
