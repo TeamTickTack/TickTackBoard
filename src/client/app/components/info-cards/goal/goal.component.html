@@ -1,0 +1,31 @@
+<div class="info-card">
+    <span class="card-type">SAISON STATISTIK</span>
+    <div>
+        <table style="margin-top: 12px;">
+            <tr>
+                <td colspan="2"><fa-icon [icon]="'user'"></fa-icon> Topscorer</td>
+                <td colspan="4">{{goalInfo.topscorer}} ({{goalInfo.topscorergoals}} Tore)</td>
+            </tr>
+            <hr>
+            <tr>
+                <td><fa-icon [icon]="'futbol'"></fa-icon> Gesamt Tore</td>
+                
+                <td><fa-icon [icon]="'futbol'"></fa-icon> Heim Tore</td>
+                
+                <td><fa-icon [icon]="'futbol'"></fa-icon> Gast Tore</td>
+               
+                <td><fa-icon [icon]="'futbol'"></fa-icon> Erste Halbzeit Tore</td>
+             
+                <td><fa-icon [icon]="'futbol'"></fa-icon> Zwetite Halbzeit Tore</td>
+                
+            </tr>
+            <tr>
+                <td>{{goalInfo.gesamtTore}}</td>
+                <td>{{goalInfo.heimTore}}</td>
+                <td>{{goalInfo.gastTore}}</td>
+                <td>{{goalInfo.gesamtTore}}</td>
+                <td>{{goalInfo.gesamtTore}}</td>
+            </tr>
+        </table>
+    </div>
+</div>
