@@ -54,6 +54,7 @@ export class MessageService {
         this.manager.addDocument('de', '%player% schiesst ein Tor', 'goalScored');
         this.manager.addDocument('de', '%player% hat ein %goal% geschossen.', 'goalScored');
         this.manager.addDocument('de', '%player% hat das %goal% getroffen.', 'goalScored');
+        this.manager.addDocument('de', 'Ein %goal% von %player%', 'goalScored');
         this.manager.addDocument('de', '%team% gehen dank einem %goal% von %player% in Führung', 'goalScored');
         this.manager.addDocument('de', 'heute spielt %team%', 'team');
         this.manager.addDocument('de', '%player% trifft zum Ausgleich', 'goalScored');

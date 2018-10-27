@@ -28,7 +28,7 @@ export class TickerService {
         return infos;
     }
 
-    private async checkPlayer(data: ParsedMessage): Promise<Array<PlayerDto>> {
+    private async checkPlayer(data: ParsedMessage): Promise<Array<KontextInfoDto>> {
         const info = [];
         const foundPlayers: Array<string> = [];
         for (const player of data.entities) {
@@ -39,16 +39,16 @@ export class TickerService {
                 if (!foundPlayers.some((u) => u === playerUid)) {
                     foundPlayers.push(playerUid);
                     const dto = PlayerDto.fromPlayer(await this.repository.findPlayer(playerUid));
+                    info.push(dto);
                     if (data.score >= 0.5) {
                         dto.action = data.intent;
-                        if (data.intent == "redCard" || data.intent == "yellowCard") {
-                            info.push(this.createCardInfo());
+                        if (data.intent === "redCard" || data.intent === "yellowCard") {
+                            info.push(await this.createCardInfo());
                         }
-                        if (data.intent == "goalScored") {
-                            info.push(this.createGoalInfo());
+                        if (data.intent === "goalScored") {
+                            info.push(await this.createGoalInfo());
                         }
                     }
-                    info.push(dto);
                 }
             }
         }
@@ -90,12 +90,13 @@ export class TickerService {
         return info;
     }
 
-    public async createGoalInfo(): Promise<GoalDto> {
+    public async createGoalInfo(): Promise<KontextInfoDto> {
 
         const parties = await this.repository.getParties();
         const topscorer = await this.repository.getTopScorer();
 
         const goalDto = new GoalDto();
+        goalDto.type = 'goal';
         goalDto.topscorergoals = parseInt(topscorer.goals);
         goalDto.topscorer = topscorer.last_name;
         goalDto.heimTore = 0;
@@ -114,13 +115,14 @@ export class TickerService {
         return goalDto;
     }
 
-    public async createCardInfo(): Promise<CardDto> {
+    public async createCardInfo(): Promise<KontextInfoDto> {
         const referees = await this.repository.getReferees();
         const topgelbreferee = await this.repository.getTopGelbReferee();
         const toprotreferee = await this.repository.getTopRotReferee();
         console.log(referees);
         console.log(toprotreferee);
         const cardDto = new CardDto();
+        cardDto.type = 'card';
         cardDto.schiedsrichterMitMeistenGelbeKarten = topgelbreferee.first_name + ' ' + topgelbreferee.last_name;
         cardDto.schiedsrichterMitMeistenRoteKarten = toprotreferee.first_name + ' ' + toprotreferee.last_name;
         cardDto.anzahlGelbeKarten = 0;
@@ -129,7 +131,6 @@ export class TickerService {
             cardDto.anzahlGelbeKarten += referee.yellow_cards;
             cardDto.anzahlRoteKarten += referee.red_cards;
         }
-
         return cardDto;
     }
 
