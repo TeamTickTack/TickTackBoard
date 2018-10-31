@@ -9,4 +9,8 @@ import { PlayerDto } from '../../../../../server/ticker/dtos/player.dto'
 export class PlayerComponent {
     @Input()
     public playerInfo: PlayerDto;
+
+    public getPictureUrl() {
+      return 'https://ticktack.blob.core.windows.net/ybpictures/' + this.playerInfo.firstName.replace(" ", "") + '_' + this.playerInfo.lastName.replace(" ", "") + '.png' 
+    }
 }
